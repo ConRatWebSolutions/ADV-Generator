@@ -1,0 +1,67 @@
+#!/bin/bash
+
+set -eux
+
+# define target as array
+declare -A target
+
+# require constants
+targetDir=$(dirname "$0")/targets
+. "$targetDir"/"live"
+
+echo "🚀 Starte Deployment auf Live-Server..."
+
+# Extract username from variable
+sshUser=${target[sshUser]}
+remotePath=${target[remoteBasePath]}
+
+# Prompt user for confirmation
+echo "📋 Deployment-Details:"
+echo "   Benutzer: ${sshUser}"
+echo "   Server: ${target[sshHost]}"
+echo "   Zielpfad: ${remotePath}"
+echo ""
+
+read -p "Ist der Benutzer ${sshUser} korrekt? (ja/nein): " userInput
+
+# Checking user input
+if [ "$userInput" == "ja" ]; then
+    echo "✅ Benutzer bestätigt. Starte Deployment..."
+    echo "👤 Verwende Benutzer: ${sshUser}"
+else
+    echo "❌ Benutzer nicht bestätigt. Deployment wird abgebrochen."
+    exit 1
+fi
+
+echo ""
+echo "📁 Übertrage Dateien..."
+
+ 
+# Übertrage Dateien mit rsync
+echo "📤 Übertrage config/..."
+rsync -avz --progress --delete config/ "${sshUser}"@"${target[sshHost]}":${remotePath}/config/
+
+echo "📤 Übertrage public/..."
+rsync -avz --progress --delete public/ "${sshUser}"@"${target[sshHost]}":${remotePath}/public/
+
+echo "📤 Übertrage includes/..."
+rsync -avz --progress --delete includes/ "${sshUser}"@"${target[sshHost]}":${remotePath}/includes/
+
+echo "📤 Übertrage templates/..."
+rsync -avz --progress --delete templates/ "${sshUser}"@"${target[sshHost]}":${remotePath}/templates/
+
+echo "📤 Übertrage storage/..."
+rsync -avz --progress storage/ "${sshUser}"@"${target[sshHost]}":${remotePath}/storage/
+
+echo "📤 Übertrage vendor/..."
+rsync -avz --progress vendor/ "${sshUser}"@"${target[sshHost]}":${remotePath}/vendor/
+
+# Setze korrekte Berechtigungen
+echo "🔐 Setze Berechtigungen..."
+ssh -p "${target[sshPort]}" "${sshUser}"@"${target[sshHost]}" "chmod -R 755 ${remotePath} && chown -R www-data:www-data ${remotePath}"
+
+echo ""
+echo "✅ Deployment erfolgreich abgeschlossen!"
+echo "🌐 Live-Server: ${target[sshHost]}"
+echo "📁 Zielpfad: ${remotePath}"
+ 

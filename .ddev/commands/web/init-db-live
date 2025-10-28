@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# PostgreSQL-Initialisierung für Live-Server (korrigierte Version)
+# saner programming env: these switches turn some bugs into errors
+set -ex
+
+echo "🗄️ Initialisiere PostgreSQL-Datenbank auf Live-Server..."
+
+# Lade .env.live direkt
+source /var/www/html/.env.live
+
+# SSH-Verbindung
+SSH_USER="root"
+SSH_HOST="194.164.63.96"
+SSH_PORT="22"
+
+echo "🔍 Teste PostgreSQL-Verbindung..."
+ssh -p "$SSH_PORT" "$SSH_USER"@"$SSH_HOST" "pg_isready -h $DB_HOST -p $DB_PORT -U $DB_USER"
+
+# Lade PostgreSQL-Schema
+echo "📥 Lade PostgreSQL-Schema..."
+ssh -p "$SSH_PORT" "$SSH_USER"@"$SSH_HOST" "psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME" < /var/www/html/database/schema_postgresql.sql
+
+# Prüfe erstellte Tabellen
+echo "✅ Prüfe erstellte Tabellen..."
+ssh -p "$SSH_PORT" "$SSH_USER"@"$SSH_HOST" "psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -c '\dt'"
+
+echo ""
+echo "🎉 PostgreSQL-Datenbank erfolgreich initialisiert!"
+echo "📊 Verfügbare Tabellen:"
+ssh -p "$SSH_PORT" "$SSH_USER"@"$SSH_HOST" "psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -c 'SELECT tablename FROM pg_tables WHERE schemaname = '\''public'\'';'"
+
+echo ""
+echo "🔍 Teste Datenbankverbindung..."
+ssh -p "$SSH_PORT" "$SSH_USER"@"$SSH_HOST" "psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -c 'SELECT version();'"

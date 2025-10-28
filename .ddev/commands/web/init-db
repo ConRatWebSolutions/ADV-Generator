@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Datenbank-Initialisierung für DSGVO ADV Projekt
+# saner programming env: these switches turn some bugs into errors
+set -ex
+
+echo "🗄️ Initialisiere Datenbank für DSGVO ADV Projekt..."
+
+# Prüfe ob MySQL/MariaDB läuft
+if ! mysql -h db -u root -proot -e "SELECT 1" > /dev/null 2>&1; then
+    echo "❌ MySQL/MariaDB ist nicht erreichbar. Starte DDEV..."
+    ddev start
+    sleep 5
+fi
+
+# Lade Schema
+echo "📥 Lade MySQL-Schema..."
+mysql -h db -u root -proot db < /var/www/html/database/schema_mysql.sql
+
+# Prüfe ob Tabellen erstellt wurden
+echo "✅ Prüfe erstellte Tabellen..."
+mysql -h db -u root -proot db -e "SHOW TABLES;"
+
+echo ""
+echo "🎉 Datenbank erfolgreich initialisiert!"
+echo "📊 Verfügbare Tabellen:"
+mysql -h db -u root -proot db -e "SELECT TABLE_NAME, TABLE_ROWS FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'db';"
+
+echo ""
+echo "🔍 Teste Datenbankverbindung..."
+php -r "
+require_once '/var/www/html/config/database.php';
+try {
+    \$pdo = DatabaseConfig::getConnection();
+    echo '✅ Datenbankverbindung erfolgreich!' . PHP_EOL;
+    
+    \$config = DatabaseConfig::getConfigInfo();
+    echo '📋 Konfiguration:' . PHP_EOL;
+    foreach (\$config as \$key => \$value) {
+        echo '   ' . \$key . ': ' . \$value . PHP_EOL;
+    }
+} catch (Exception \$e) {
+    echo '❌ Datenbankverbindung fehlgeschlagen: ' . \$e->getMessage() . PHP_EOL;
+    exit(1);
+}
+"

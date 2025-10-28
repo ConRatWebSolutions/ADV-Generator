@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Finaler PostgreSQL zu MySQL Import
+# saner programming env: these switches turn some bugs into errors
+set -ex
+
+# init
+targetDir=$(dirname "$0")/targets
+dataDir="/var/www/html/data/"
+
+typeset -A target
+
+# check if param 1 is set
+if [ -z "$1" ];
+    then
+        environment="live"
+    else
+        environment=$1
+fi
+
+# require constants
+. "$targetDir"/"$environment"
+
+# set date to current date
+date=$(date +%Y-%m-%d_%H-%M-%S)
+
+echo "🔄 Lade PostgreSQL-Datenbank vom Live-Server (finaler Import)..."
+
+# PostgreSQL dump vom Live-Server
+echo "📥 Exportiere PostgreSQL-Datenbank..."
+ssh -p "${target[sshPort]}" "${target[sshUser]}"@"${target[sshHost]}" "PGPASSWORD='${target[postgresPassword]}' pg_dump -h ${target[postgresHost]} -U ${target[postgresUser]} -d ${target[postgresDatabase]} --data-only --inserts --no-owner --no-privileges" > "$dataDir$date"-postgres-data.sql
+
+echo "🔄 Konvertiere PostgreSQL zu MySQL/MariaDB..."
+
+# Erstelle eine saubere MySQL-Datei
+cat > "$dataDir$date"-mysql-data.sql << 'EOF'
+-- MySQL/MariaDB Import
+-- Konvertiert von PostgreSQL
+
+EOF
+
+# Konvertiere PostgreSQL zu MySQL/MariaDB
+echo "🔄 Bereinige PostgreSQL-spezifische Syntax..."
+
+# Entferne alle Zeilen außer INSERT-Statements und bereinige sie
+grep '^INSERT INTO' "$dataDir$date"-postgres-data.sql | \
+grep -v "ERROR:" | \
+grep -v "SQLSTATE" | \
+grep -v "syntax error" | \
+sed 's/public\.//g' | \
+sed "s/'t'/'1'/g" | \
+sed "s/'f'/'0'/g" | \
+sed "s/::text//g" | \
+sed "s/::integer//g" | \
+sed "s/::timestamp//g" | \
+sed "s/::character varying//g" | \
+sed "s/::inet//g" | \
+sed "s/::boolean//g" | \
+sed "s/NULL::text/NULL/g" | \
+sed "s/NULL::integer/NULL/g" | \
+sed "s/NULL::timestamp/NULL/g" | \
+sed "s/NULL::character varying/NULL/g" | \
+sed "s/NULL::inet/NULL/g" | \
+sed "s/NULL::boolean/NULL/g" | \
+grep -E "INSERT INTO.*\);$" >> "$dataDir$date"-mysql-data.sql
+
+# Leere lokale MariaDB und importiere
+echo "📥 Leere lokale MariaDB und importiere..."
+mysql -h db -u root -p'root' db -e "SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE system_logs; TRUNCATE TABLE email_logs; TRUNCATE TABLE auftragsverarbeitungsvereinbarungen; TRUNCATE TABLE csrf_tokens; TRUNCATE TABLE rate_limits; SET FOREIGN_KEY_CHECKS = 1;"
+mysql -h db -u root -p'root' db < "$dataDir$date"-mysql-data.sql
+
+echo "✅ Datenbank erfolgreich vom Live-Server (PostgreSQL) zu lokal (MariaDB) importiert!"
+echo "📁 Backup gespeichert unter: $dataDir$date-mysql-data.sql"

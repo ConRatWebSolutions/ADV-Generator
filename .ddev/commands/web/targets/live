@@ -1,0 +1,26 @@
+#!/bin/bash
+ 
+dotEnvFile="/var/www/html/.env.$(basename "${BASH_SOURCE[0]}")"
+. "$dotEnvFile"
+
+# you can use the env variables defined in .env.$currentTarget here:
+target=(
+   # SSH-Verbindung (fest definiert)
+   [sshUser]=root
+   [sshHost]=194.164.63.96
+   [sshPort]=22
+   [sshPrivKey]=
+   [remoteBasePath]=/var/www/html/somesolutions/adv
+   
+   # PostgreSQL-Daten aus .env.live (explizit gesetzt)
+   [postgresHost]="$DB_HOST"
+   [postgresPort]="$DB_PORT"
+   [postgresUser]="$DB_USER"
+   [postgresPassword]="$DB_PASSWORD"
+   [postgresDatabase]="$DB_NAME"
+)
+
+# PostgreSQL Setup-Befehle (auskommentiert)
+#sudo -u postgres psql -c "CREATE USER advsomesolutions WITH PASSWORD '9QPi2#3uH2d-z5maN';"
+#sudo -u postgres psql -c "CREATE DATABASE adv OWNER advsomesolutions;"
+#sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE adv TO advsomesolutions;"
