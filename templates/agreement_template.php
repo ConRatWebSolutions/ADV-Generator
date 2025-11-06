@@ -1,17 +1,20 @@
 <?php
+
 /**
  * DSGVO Auftragsverarbeitungsvereinbarung Template
  * Template für die Generierung der DSGVO-konformen Auftragsverarbeitungsvereinbarung
  */
 
-class AgreementTemplate {
-    
+class AgreementTemplate
+{
+
     /**
      * Generate the complete DSGVO agreement text
      * @param array $data User data for personalization
      * @return string Complete agreement text
      */
-    public static function generateAgreementText($data) {
+    public static function generateAgreementText($data)
+    {
         $companyName = htmlspecialchars($data['firma'], ENT_QUOTES, 'UTF-8');
         $contactPerson = htmlspecialchars($data['ansprechpartner'], ENT_QUOTES, 'UTF-8');
         $address = htmlspecialchars($data['anschrift'], ENT_QUOTES, 'UTF-8');
@@ -140,22 +143,23 @@ Kunden, Interessenten, Beschäftigte, Lieferanten, Kontaktpersonen und sonstige 
 
  
 <p><br /><br /><strong>Anlage 1 – Technische und organisatorischen Maßnahmen nach Art. 32 DSGVO</strong><br />
-<a href=\"https://www.some-solutions.de/dsgvo-tom\">https://www.some-solutions.de/dsgvo-tom</a></p>
+<a href=\"https://somesolutions.de/toms/\" target=\"_blank\" rel=\"noopener noreferrer\">https://somesolutions.de/toms/</a></p>
 <p><strong>Anlage 2 – Weitere Auftragsverarbeiter nach Art. 28 Abs. 2 DSGVO</strong><br />
-<a href=\"https://www.some-solutions.de/dsgvo-verarbeiter\">https://www.some-solutions.de/dsgvo-verarbeiter</a></p>
+<a href=\"https://somesolutions.de/dsgvo-verarbeiter\" target=\"_blank\" rel=\"noopener noreferrer\">https://somesolutions.de/dsgvo-verarbeiter</a></p>
  
 <p><em>Diese Vereinbarung wurde am {$currentDate} um {$currentTime} mit der IP-Adresse: {$ipAddress} erstellt und ist sofort gültig. Der Vertrag wurde elektronisch geschlossen und ist ohne Unterschrift gültig.</em></p>
 
 <p><em>Die Vereinbarung entspricht den Anforderungen der Datenschutz-Grundverordnung (DSGVO) und des Bundesdatenschutzgesetzes (BDSG).</em></p>
 ";
     }
-    
+
     /**
      * Get agreement metadata
      * @param array $data User data
      * @return array Metadata for the agreement
      */
-    public static function getAgreementMetadata($data) {
+    public static function getAgreementMetadata($data)
+    {
         return [
             'title' => 'Auftragsverarbeitungsvereinbarung nach Art. 28 DSGVO',
             'parties' => [
@@ -178,7 +182,7 @@ Kunden, Interessenten, Beschäftigte, Lieferanten, Kontaktpersonen und sonstige 
             'purpose' => 'Auftragsverarbeitung personenbezogener Daten',
             'data_categories' => [
                 'Bestandsdaten',
-                'Vertragsdaten', 
+                'Vertragsdaten',
                 'Kommunikationsdaten',
                 'Technische Daten'
             ],
@@ -190,15 +194,16 @@ Kunden, Interessenten, Beschäftigte, Lieferanten, Kontaktpersonen und sonstige 
             ]
         ];
     }
-    
+
     /**
      * Validate agreement data
      * @param array $data User data
      * @return array Validation result
      */
-    public static function validateAgreementData($data) {
+    public static function validateAgreementData($data)
+    {
         $errors = [];
-        
+
         // Required fields
         $requiredFields = ['firma', 'anschrift', 'plz', 'ort', 'email', 'ansprechpartner'];
         foreach ($requiredFields as $field) {
@@ -206,17 +211,17 @@ Kunden, Interessenten, Beschäftigte, Lieferanten, Kontaktpersonen und sonstige 
                 $errors[] = "Feld '{$field}' ist erforderlich.";
             }
         }
-        
+
         // Email validation
         if (!empty($data['email']) && !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = 'Ungültige E-Mail-Adresse.';
         }
-        
+
         // Postal code validation
         if (!empty($data['plz']) && !preg_match('/^[0-9]{5}$/', $data['plz'])) {
             $errors[] = 'Ungültige Postleitzahl.';
         }
-        
+
         return [
             'valid' => empty($errors),
             'errors' => $errors
