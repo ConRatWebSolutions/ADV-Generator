@@ -54,14 +54,53 @@ echo "📤 Übertrage storage/..."
 rsync -avz --progress storage/ "${sshUser}"@"${target[sshHost]}":${remotePath}/storage/
 
 echo "📤 Übertrage vendor/..."
-rsync -avz --progress vendor/ "${sshUser}"@"${target[sshHost]}":${remotePath}/vendor/
+rsync -avz --progress --delete vendor/ "${sshUser}"@"${target[sshHost]}":${remotePath}/vendor/
 
 # Setze korrekte Berechtigungen
 echo "🔐 Setze Berechtigungen..."
 ssh -p "${target[sshPort]}" "${sshUser}"@"${target[sshHost]}" "chmod -R 755 ${remotePath} && chown -R www-data:www-data ${remotePath}"
 
+# Prüfe wichtige Dateien auf dem Server
+echo ""
+echo "🔍 Prüfe wichtige Dateien auf dem Server..."
+ssh -p "${target[sshPort]}" "${sshUser}"@"${target[sshHost]}" "
+    echo '📄 Prüfe header.png...'
+    if [ -f ${remotePath}/templates/header.png ]; then
+        echo '   ✅ header.png vorhanden'
+        ls -lh ${remotePath}/templates/header.png
+    else
+        echo '   ❌ header.png fehlt!'
+    fi
+    
+    echo '📦 Prüfe vendor/autoload.php...'
+    if [ -f ${remotePath}/vendor/autoload.php ]; then
+        echo '   ✅ vendor/autoload.php vorhanden'
+    else
+        echo '   ❌ vendor/autoload.php fehlt!'
+    fi
+    
+    echo '📦 Prüfe TCPDF...'
+    if [ -d ${remotePath}/vendor/tecnickcom/tcpdf ]; then
+        echo '   ✅ TCPDF vorhanden'
+    else
+        echo '   ❌ TCPDF fehlt!'
+    fi
+    
+    echo '📄 Prüfe pdf_config.php...'
+    if [ -f ${remotePath}/config/pdf_config.php ]; then
+        echo '   ✅ pdf_config.php vorhanden'
+    else
+        echo '   ❌ pdf_config.php fehlt!'
+    fi
+"
+
 echo ""
 echo "✅ Deployment erfolgreich abgeschlossen!"
 echo "🌐 Live-Server: ${target[sshHost]}"
 echo "📁 Zielpfad: ${remotePath}"
+echo ""
+echo "💡 Tipp: Prüfe die PHP-Fehlerlogs auf dem Server, falls das PDF nicht korrekt generiert wird:"
+echo "   tail -f /var/log/apache2/error.log"
+echo "   oder"
+echo "   tail -f /var/log/php_errors.log"
  

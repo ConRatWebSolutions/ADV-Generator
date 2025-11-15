@@ -5,31 +5,79 @@
  * Returns the HTML preview of the agreement based on form data
  */
 
-header('Content-Type: application/json');
+// Disable error display to prevent breaking JSON output
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+
+// Set JSON header first
+header('Content-Type: application/json; charset=utf-8');
+
+// Function to safely output JSON
+function outputJson($data)
+{
+    $json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    if ($json === false) {
+        http_response_code(500);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Fehler beim Erstellen der JSON-Antwort: ' . json_last_error_msg()
+        ], JSON_UNESCAPED_UNICODE);
+    } else {
+        echo $json;
+    }
+    exit;
+}
 
 try {
     // Only allow POST requests
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        throw new Exception('Nur POST erlaubt');
+        http_response_code(405);
+        outputJson([
+            'success' => false,
+            'message' => 'Nur POST erlaubt'
+        ]);
     }
 
     // Get JSON input
-    $input = json_decode(file_get_contents('php://input'), true);
+    $rawInput = file_get_contents('php://input');
+    if (empty($rawInput)) {
+        outputJson([
+            'success' => false,
+            'message' => 'Keine Daten empfangen'
+        ]);
+    }
+
+    $input = json_decode($rawInput, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
-        throw new Exception('Ungültige JSON-Daten');
+        outputJson([
+            'success' => false,
+            'message' => 'Ungültige JSON-Daten: ' . json_last_error_msg()
+        ]);
     }
 
     // Validate required fields
     $required = ['vorname', 'name', 'email', 'firma', 'ansprechpartner', 'anschrift', 'plz', 'ort'];
+    $missingFields = [];
     foreach ($required as $field) {
         if (empty($input[$field])) {
-            throw new Exception("Feld '$field' ist erforderlich.");
+            $missingFields[] = $field;
         }
+    }
+
+    if (!empty($missingFields)) {
+        outputJson([
+            'success' => false,
+            'message' => 'Fehlende Felder: ' . implode(', ', $missingFields)
+        ]);
     }
 
     // Validate email
     if (!filter_var($input['email'], FILTER_VALIDATE_EMAIL)) {
-        throw new Exception('Ungültige E-Mail-Adresse');
+        outputJson([
+            'success' => false,
+            'message' => 'Ungültige E-Mail-Adresse'
+        ]);
     }
 
     // Load template
@@ -44,15 +92,23 @@ try {
     $html .= $agreementText;
     $html .= '</div>';
 
-    // Return success with HTML
-    echo json_encode([
+    // Return success with HTML (json_encode will properly escape the HTML)
+    outputJson([
         'success' => true,
         'html' => $html
     ]);
 } catch (Exception $e) {
-    http_response_code(400);
-    echo json_encode([
+    error_log("Preview error: " . $e->getMessage());
+    http_response_code(500);
+    outputJson([
         'success' => false,
-        'message' => $e->getMessage()
+        'message' => 'Serverfehler: ' . $e->getMessage()
+    ]);
+} catch (Error $e) {
+    error_log("Preview fatal error: " . $e->getMessage());
+    http_response_code(500);
+    outputJson([
+        'success' => false,
+        'message' => 'Kritischer Fehler: ' . $e->getMessage()
     ]);
 }

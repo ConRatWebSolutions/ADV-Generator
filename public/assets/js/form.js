@@ -481,7 +481,19 @@ class AgreementForm {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
+      // Get response text first to check if it's valid JSON
+      const responseText = await response.text();
+      let data;
+
+      try {
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error("JSON parse error:", parseError);
+        console.error("Response text:", responseText);
+        throw new Error(
+          "Ungültige Antwort vom Server. Bitte versuchen Sie es erneut."
+        );
+      }
 
       if (data.success && data.html) {
         previewContent.innerHTML = data.html;
@@ -494,7 +506,10 @@ class AgreementForm {
                 <div class="error-message">
                     <div class="error-icon">❌</div>
                     <h3>Fehler beim Laden der Vorschau</h3>
-                    <p>${error.message}</p>
+                    <p>${
+                      error.message ||
+                      "Ein unerwarteter Fehler ist aufgetreten."
+                    }</p>
                 </div>
             `;
     }

@@ -23,7 +23,7 @@ class AgreementTemplate
         $email = htmlspecialchars($data['email'], ENT_QUOTES, 'UTF-8');
         $currentDate = date('d.m.Y');
         $currentTime = date('H:i:s');
-        $ipAddress = $_SERVER['REMOTE_ADDR'];
+        $ipAddress = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
         return "
  
 
@@ -41,115 +41,193 @@ class AgreementTemplate
 <p><strong>ConRat WebSolutions GmbH</strong><br>
 Gartenstr. 4<br>
 37281 Wanfried<br>
-– nachfolgend \"Auftragnehmer\" genannt –</p>
+–   nachfolgend ConRat (GmbH) genannt – –</p>
 
-<p>gemeinsam auch \"die Parteien\" genannt.<br /></p>
 
-<h3>1. Gegenstand und Dauer des Auftrags</h3>
 
-<p><strong>1.1</strong> Gegenstand dieser Vereinbarung ist die Verarbeitung personenbezogener Daten im Auftrag gemäß Art. 28 DSGVO. Der Auftragnehmer erbringt für den Auftraggeber Dienstleistungen im Bereich [… z. B. Webhosting, E-Mail-Dienste, Domainverwaltung, Serverbetrieb, IT-Support …].</p>
-
-<p><strong>1.2</strong> Die Verarbeitung personenbezogener Daten durch den Auftragnehmer erfolgt ausschließlich im Rahmen und zu den Zwecken der Erfüllung der vertraglich vereinbarten Leistungen.</p>
-
-<p><strong>1.3</strong> Die Laufzeit dieser Vereinbarung entspricht der Laufzeit des Hauptvertrags über die zugrundeliegende Leistungserbringung. Sie endet automatisch mit Beendigung des Hauptvertrags, soweit keine weitergehenden Verpflichtungen nach dieser Vereinbarung bestehen.</p>
-
-<h3>2. Art und Zweck der Verarbeitung, Art der Daten, Kategorien betroffener Personen</h3>
-
-<p><strong>2.1 Art der Verarbeitung:</strong><br>
-Erhebung, Speicherung, Organisation, Aufbewahrung, Anpassung, Auswertung, Auslesung, Nutzung, Übermittlung, Einschränkung, Löschung oder Vernichtung personenbezogener Daten – je nach Art der beauftragten Leistung.</p>
-
-<p><strong>2.2 Zweck der Verarbeitung:</strong><br>
-Erfüllung der im Hauptvertrag vereinbarten Dienstleistungen, insbesondere Bereitstellung, Betrieb und Wartung von IT-, Hosting-, Kommunikations- oder sonstigen Systemen.</p>
-
-<p><strong>2.3 Art der personenbezogenen Daten:</strong><br>
-Personenstammdaten, Kommunikationsdaten (z. B. E-Mail, Telefon), Vertragsdaten, Nutzungsdaten, Abrechnungs- und Zahlungsdaten sowie sonstige im Rahmen der Leistungserbringung verarbeitete personenbezogene Daten.</p>
-
-<p><strong>2.4 Kategorien betroffener Personen:</strong><br>
-Kunden, Interessenten, Beschäftigte, Lieferanten, Kontaktpersonen und sonstige durch die Verarbeitung betroffene natürliche Personen.</p>
-
-<h3>3. Rechte und Pflichten des Auftraggebers</h3>
-
-<p><strong>3.1</strong> Der Auftraggeber ist Verantwortlicher im Sinne des Art. 4 Nr. 7 DSGVO. Er bleibt hinsichtlich der Rechtmäßigkeit der Datenverarbeitung, der Wahrung der Betroffenenrechte und der Erfüllung seiner Pflichten nach der DSGVO verantwortlich.</p>
-
-<p><strong>3.2</strong> Der Auftraggeber hat den Auftragnehmer unverzüglich zu informieren, wenn er Fehler oder Unregelmäßigkeiten bei der Verarbeitung personenbezogener Daten feststellt.</p>
-
-<p><strong>3.3</strong> Der Auftraggeber ist berechtigt, Weisungen zur Art, zum Umfang und zu den Verfahren der Verarbeitung zu erteilen. Weisungen sind grundsätzlich schriftlich oder in einem elektronischen Format (z. B. E-Mail) zu erteilen.</p>
-
-<h3>4. Pflichten des Auftragnehmers</h3>
-
-<p><strong>4.1</strong> Der Auftragnehmer verarbeitet personenbezogene Daten ausschließlich auf dokumentierte Weisung des Auftraggebers, sofern er nicht nach dem Recht der Union oder der Mitgliedstaaten zu einer Verarbeitung verpflichtet ist. In einem solchen Fall informiert der Auftragnehmer den Auftraggeber vor der Verarbeitung, sofern das betreffende Recht eine solche Information nicht verbietet.</p>
-
-<p><strong>4.2</strong> Der Auftragnehmer stellt sicher, dass sich die zur Verarbeitung befugten Personen zur Vertraulichkeit verpflichtet haben oder einer gesetzlichen Verschwiegenheitspflicht unterliegen (Art. 28 Abs. 3 lit. b DSGVO).</p>
-
-<p><strong>4.3</strong> Der Auftragnehmer ergreift alle gemäß Art. 32 DSGVO erforderlichen technischen und organisatorischen Maßnahmen (TOM), um ein dem Risiko angemessenes Schutzniveau zu gewährleisten. Eine aktuelle Übersicht der TOM wird dem Auftraggeber auf Anfrage zur Verfügung gestellt.</p>
-
-<p><strong>4.4</strong> Der Auftragnehmer unterstützt den Auftraggeber nach Art. 28 Abs. 3 lit. e DSGVO bei der Wahrung der Betroffenenrechte gemäß Kapitel III DSGVO sowie bei der Einhaltung der Pflichten gemäß Art. 32 bis 36 DSGVO (z. B. Meldung von Datenschutzverletzungen, Datenschutz-Folgenabschätzung).</p>
-
-<p><strong>4.5</strong> Der Auftragnehmer informiert den Auftraggeber unverzüglich, wenn er der Ansicht ist, dass eine Weisung des Auftraggebers gegen Datenschutzvorschriften verstößt. Die Ausführung der Weisung wird bis zur Bestätigung oder Änderung durch den Auftraggeber ausgesetzt.</p>
-
-<h3>5. Technische und organisatorische Maßnahmen (Art. 32 DSGVO)</h3>
-
-<p><strong>5.1</strong> Der Auftragnehmer dokumentiert und implementiert geeignete technische und organisatorische Maßnahmen, um den Schutz der personenbezogenen Daten sicherzustellen.</p>
-
-<p><strong>5.2</strong> Diese Maßnahmen unterliegen dem technischen Fortschritt und werden fortlaufend angepasst. Änderungen sind zulässig, sofern das vereinbarte Sicherheitsniveau nicht unterschritten wird.</p>
-
-<h3>6. Unterauftragsverhältnisse (Subunternehmer)</h3>
-
-<p><strong>6.1</strong> Der Auftraggeber stimmt zu, dass der Auftragnehmer zur Erfüllung seiner vertraglichen Verpflichtungen Unterauftragnehmer einsetzen darf.</p>
-
-<p><strong>6.2</strong> Der Auftragnehmer informiert den Auftraggeber über beabsichtigte Änderungen hinsichtlich der Hinzuziehung oder Ersetzung von Unterauftragnehmern. Der Auftraggeber kann binnen 14 Tagen nach Mitteilung aus wichtigem Grund widersprechen.</p>
-
-<p><strong>6.3</strong> Der Auftragnehmer hat mit den Unterauftragnehmern Verträge zu schließen, die den Anforderungen des Art. 28 DSGVO entsprechen und dieselben Datenschutzpflichten auferlegen wie diese Vereinbarung.</p>
-
-<p><strong>6.4</strong> Eine Liste der jeweils aktuell eingesetzten Unterauftragnehmer ist auf Anfrage oder über [Link / Anhang] abrufbar.</p>
-
-<h3>7. Unterstützung bei der Wahrung der Betroffenenrechte</h3>
-
-<p>Der Auftragnehmer unterstützt den Auftraggeber im Rahmen seiner Möglichkeiten bei der Erfüllung der Rechte betroffener Personen nach Kapitel III DSGVO, insbesondere hinsichtlich Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit.</p>
-
-<h3>8. Kontrolle und Nachweise</h3>
-
-<p><strong>8.1</strong> Der Auftraggeber ist berechtigt, die Einhaltung der in dieser Vereinbarung getroffenen Datenschutzpflichten regelmäßig zu überprüfen, auch durch Stichprobenkontrollen oder durch Beauftragung externer Prüfer.</p>
-
-<p><strong>8.2</strong> Der Auftragnehmer stellt dem Auftraggeber auf Anfrage alle erforderlichen Informationen zum Nachweis der Einhaltung der Pflichten nach Art. 28 DSGVO zur Verfügung.</p>
-
-<p><strong>8.3</strong> Kontrollen sind rechtzeitig anzukündigen (mindestens 3 Wochen vorher) und während der üblichen Geschäftszeiten ohne Störung des Betriebsablaufs durchzuführen.</p>
-
-<h3>9. Löschung und Rückgabe von Daten</h3>
-
-<p><strong>9.1</strong> Nach Abschluss der vereinbarten Leistungen oder auf Anweisung des Auftraggebers hat der Auftragnehmer alle personenbezogenen Daten, einschließlich etwaiger Kopien, datenschutzgerecht zu löschen oder an den Auftraggeber zurückzugeben, sofern keine gesetzliche Aufbewahrungspflicht entgegensteht.</p>
-
-<p><strong>9.2</strong> Dokumentationen, die dem Nachweis der ordnungsgemäßen Verarbeitung dienen, sind entsprechend gesetzlicher Aufbewahrungspflichten zu sichern.</p>
-
-<h3>10. Informationspflichten bei Verstößen</h3>
-
-<p>Der Auftragnehmer informiert den Auftraggeber unverzüglich über Verletzungen des Schutzes personenbezogener Daten (Art. 33 DSGVO). Die Mitteilung hat alle Informationen zu enthalten, die erforderlich sind, damit der Auftraggeber seine Meldepflichten erfüllen kann.</p>
-
-<h3>11. Gegenseitige Unterstützung (Art. 82 DSGVO)</h3>
-
-<p>Im Falle von Ansprüchen betroffener Personen oder Dritter nach Art. 82 DSGVO verpflichten sich die Parteien, sich gegenseitig zu unterstützen und zur Aufklärung des zugrundeliegenden Sachverhalts beizutragen. Jede Partei informiert die andere unverzüglich über ihr bekannt gewordene Haftungsansprüche im Zusammenhang mit der Auftragsverarbeitung.</p>
-
-<h3>12. Schriftform und Änderungen</h3>
-
-<p>Änderungen und Ergänzungen dieser Vereinbarung einschließlich etwaiger Nebenabreden bedürfen der Schriftform oder einer gleichwertigen elektronischen Form. Dies gilt auch für einen Verzicht auf dieses Formerfordernis.</p>
-
-<h3>13. Salvatorische Klausel, Vertragsbestandteile, Gerichtsstand</h3>
-
-<p><strong>13.1</strong> Sollten einzelne Bestimmungen dieser Vereinbarung unwirksam oder undurchführbar sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Die Parteien verpflichten sich, eine der unwirksamen Bestimmung möglichst nahekommende Regelung zu vereinbaren.</p>
-
-<p><strong>13.2</strong> Sämtliche Anlagen zu dieser Vereinbarung – insbesondere die \"Technischen und organisatorischen Maßnahmen (TOM)\" sowie etwaige Listen der Unterauftragnehmer - sind Bestandteil dieses Vertrags.</p>
-
-<p><strong>13.3</strong> Gerichtsstand für alle Streitigkeiten aus und im Zusammenhang mit dieser Vereinbarung ist, soweit gesetzlich zulässig, Eschwege (Deutschland).<br /><br /></p>
-
+<p>
+    <strong>Präambel&nbsp;&nbsp;</strong>
+</p>
+<p>
+    Diese Anlage konkretisiert die Verpflichtungen der Vertragsparteien zum Datenschutz, die sich aus der im Hauptvertrag in ihren Einzelheiten beschriebenen Auftragsverarbeitung ergeben. Sie findet Anwendung auf alle Tätigkeiten, die mit dem Vertrag in Zusammenhang stehen und bei denen Beschäftigte der ConRat GmbH oder durch Beauftragte personenbezogene Daten des Auftraggebers verarbeiten.&nbsp;
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
+    <strong>§ 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gegenstand, Dauer und Spezifizierung der Auftragsverarbeitung&nbsp;</strong>
+</p>
+<p>
+    Im Einzelnen sind die Angaben in&nbsp;<strong>Anlage 1</strong>&nbsp;Bestandteil der Datenverarbeitung.&nbsp;&nbsp;
+</p>
+<p>
+    Die Laufzeit dieser Anlage richtet sich nach der Laufzeit des Vertrages, sofern sich aus den Bestimmungen dieser Anlage nicht darüber hinausgehende Verpflichtungen ergeben.&nbsp;
+</p>
+<p>
+    <strong>§ 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Anwendungsbereich und Verantwortlichkeit&nbsp;</strong>
+</p>
+<ol>
+    <li>
+        Die ConRat GmbH verarbeitet personenbezogene Daten im Auftrag des Auftraggebers. Dies umfasst Tätigkeiten, die im Vertrag und in der Leistungsbeschreibung konkretisiert sind. Der Auftraggeber ist im Rahmen dieses Vertrages für die Einhaltung der gesetzlichen Bestimmungen der Datenschutzgesetze, insbesondere für die Rechtmäßigkeit der Datenweitergabe an&nbsp;&nbsp;ConRat sowie für die Rechtmäßigkeit der Datenverarbeitung allein verantwortlich (»Verantwortlicher« im Sinne des Art. 4&nbsp;&nbsp;Nr. 7 DSGVO).&nbsp; 
+    </li>
+    <li>
+        Die Weisungen werden anfänglich durch diesen Vertrag festgelegt und können vom Auftraggeber danach in schriftlicher Form oder in einem elektronischen Format (Textform) an die von ConRat bezeichnete Stelle durch einzelne Weisungen geändert, ergänzt oder ersetzt werden (Einzelweisung). Weisungen, die im Vertrag nicht vorgesehen sind, werden als Antrag auf Leistungsänderung behandelt. Mündliche Weisungen sind unverzüglich schriftlich oder in Textform zu bestätigen.&nbsp;
+    </li>
+</ol>
+<p>
+    <strong>§ 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pflichten der ConRat GmbH&nbsp;</strong>
+</p>
+<ol>
+    <li>
+        Die ConRat GmbH darf Daten von betroffenen Personen nur im Rahmen des Auftrages und der Weisungen des Auftraggebers verarbeiten außer es liegt ein Ausnahmefall im Sinne des Artikel 28 Abs. 3 a) DSGVO vor. ConRat informiert den Auftraggeber unverzüglich, wenn sie der Auffassung ist, dass eine Weisung gegen anwendbare Gesetze verstößt. ConRat darf die Umsetzung der Weisung solange aussetzen, bis sie vom Auftraggeber bestätigt oder abgeändert wurde. 
+    </li>
+    <li>
+        ConRat wird in seinem Verantwortungsbereich die innerbetriebliche Organisation so gestalten, dass sie den besonderen Anforderungen des Datenschutzes gerecht wird. Er wird technische und organisatorische Maßnahmen gemäß&nbsp;<strong>Anlage 4</strong>&nbsp;zum angemessenen Schutz der Daten des Auftraggebers treffen, die den Anforderungen der Datenschutz--Grundverordnung (Art. 32 DSGVO) genügen. ConRat hat technische und organisatorische Maßnahmen zu treffen, die die Vertraulichkeit, Integrität, Verfügbarkeit und Belastbarkeit der Systeme und Dienste im Zusammenhang mit der Verarbeitung auf Dauer sicherstellen. Dem Auftraggeber sind diese technischen und organisatorischen Maßnahmen bekannt und er trägt die Verantwortung dafür, dass diese für die Risiken der zu verarbeitenden Daten ein angemessenes Schutzniveau bieten. Eine Änderung der getroffenen Sicherheitsmaßnahmen bleibt der ConRat GmbH vorbehalten, wobei jedoch sichergestellt sein muss, dass das vertraglich vereinbarte Schutzniveau nicht unterschritten wird.&nbsp; 
+    </li>
+    <li>
+        ConRat unterstützt soweit vereinbart den Auftraggeber im Rahmen seiner Möglichkeiten bei der Erfüllung der Anfragen und Ansprüche betroffenen Personen gem. Kapitel III der DSGVO sowie bei der Einhaltung der in Art. 33 bis 36 DSGVO genannten Pflichten. 
+    </li>
+    <li>
+        ConRat gewährleistet, dass es den mit der Verarbeitung der Daten des Auftraggebers befassten Mitarbeiter und andere für ConRat tätigen Personen untersagt ist, die Daten außerhalb der Weisung zu verarbeiten. Ferner gewährleistet ConRat, dass sich die zur Verarbeitung der personenbezogenen Daten befugten Personen zur Vertraulichkeit verpflichtet haben oder einer angemessenen gesetzlichen Verschwiegenheitspflicht unterliegen. Die Vertraulichkeits-/ Verschwiegenheitspflicht besteht auch nach Beendigung des Auftrages fort. 
+    </li>
+    <li>
+        Die ConRat GmbH unterrichtet den Auftraggeber unverzüglich, wenn ihr Verletzungen des Schutzes personenbezogener Daten des Auftraggebers bekannt werden. ConRat trifft die erforderlichen Maßnahmen zur Sicherung der Daten und zur Minderung möglicher nachteiliger Folgen der betroffenen Personen und spricht sich hierzu unverzüglich mit dem Auftraggeber ab.&nbsp; 
+    </li>
+    <li>
+        Die ConRat GmbH hat zur Klärung von Datenschutzfragen und zur Einhaltung der gesetzlichen Aufgaben nach der DS-GVO, dem BDSG (neu) und dem Hessischen Landesdatenschutzgesetz einen externen Datenschutzbeauftragten bestellt. 
+    </li>
+    <li>
+        ConRat&nbsp;&nbsp;gewährleistet, seinen Pflichten nach Art. 32 Abs. 1 lit. d) DSGVO nachzukommen, ein Verfahren zur regelmäßigen Überprüfung der Wirksamkeit der technischen und organisatorischen Maßnahmen zur Gewährleistung der Sicherheit der Verarbeitung einzusetzen. 
+    </li>
+    <li>
+        ConRat berichtigt oder löscht die vertragsgegenständlichen Daten, wenn der Auftraggeber dies anweist und dies vom Weisungsrahmen umfasst ist. Ist eine datenschutzkonforme Löschung oder eine entsprechende Einschränkung der Datenverarbeitung nicht möglich, übernimmt ConRat die datenschutzkonforme Vernichtung von Datenträgern und sonstigen Materialien auf Grund einer Einzelbeauftragung durch den Auftraggeber oder gibt diese Datenträger an den Auftraggeber zurück, sofern nicht im Vertrag bereits vereinbart. In besonderen, vom Auftraggeber zu bestimmenden Fällen, erfolgt eine Aufbewahrung bzw. Übergabe, Vergütung und Schutzmaßnahmen hierzu sind gesondert zu vereinbaren, sofern nicht im Vertrag bereits vereinbart. 
+    </li>
+    <li>
+        Daten, Datenträger sowie sämtliche sonstige Materialien sind nach Auftragsende auf Verlangen des Auftraggebers entweder herauszugeben oder zu löschen. 
+    </li>
+    <li>
+        Im Falle einer Inanspruchnahme des Auftraggebers durch eine betroffene Person hinsichtlich etwaiger Ansprüche nach Art. 82 DSGVO, verpflichtet sich der ConRat den Auftraggeber bei der Abwehr des Anspruches im Rahmen seiner Möglichkeiten zu unterstützen. 
+    </li>
+    <li>
+        Die ConRat GmbH benennt dem Auftraggeber in&nbsp;<strong>Anlage 2</strong>&nbsp;die Person(en), die zum Empfang von Weisungen des Auftraggebers berechtigt sind. Für den Fall, dass sich die weisungsempfangsberechtigten Personen ändern, wird ConRat dies dem Auftraggeber in Textform mitteilen.&nbsp;<br>
+        &nbsp;
+    </li>
+</ol>
+<p>
+    <strong>§ 4 Pflichten des Auftraggebers&nbsp;</strong>
+</p>
+<ol>
+    <li>
+        Der Auftraggeber hat ConRat unverzüglich und vollständig zu informieren, wenn er in den&nbsp;<br>
+        Auftragsergebnissen Fehler oder Unregelmäßigkeiten bzgl. Datenschutz-rechtlicher Bestimmungen feststellt.&nbsp; 
+    </li>
+    <li>
+        Im Falle einer Inanspruchnahme des Auftraggebers durch eine betroffene Person hinsichtlich etwaiger Ansprüche nach Art. 82 DSGVO, gilt § 3 Abs. 10 entsprechend. 
+    </li>
+    <li>
+        Der Auftraggeber nennt der ConRat GmbH in&nbsp;<strong>Anlage 2</strong>&nbsp;den Ansprechpartner für im Rahmen des Vertrages anfallende Datenschutzfragen.&nbsp;
+    </li>
+</ol>
+<p>
+    <strong>§ 5 Anfragen betroffener Personen&nbsp;</strong>
+</p>
+<p>Wendet sich eine betroffene Person mit Forderungen zur Berichtigung, Löschung, oder Auskunft an ConRat, wird die ConRat GmbH die betroffene Person an den Auftraggeber verweisen, sofern eine Zuordnung an den Auftraggeber nach Angaben der betroffenen Person möglich ist. ConRat leitet den Antrag der betroffenen Person unverzüglich an den Auftraggeber weiter und unterstützt den Auftraggeber im Rahmen seiner Möglichkeiten auf Weisung soweit vereinbart. ConRat haftet nicht, wenn das Ersuchen der betroffenen Person vom Auftraggeber nicht, nicht richtig oder nicht fristgerecht beantwortet wird.&nbsp;
+</p>
+<p>
+    <strong>§ 6 Nachweismöglichkeiten&nbsp;</strong>
+</p>
+<ol>
+    <li>
+        Die ConRat GmbH weist dem Auftraggeber die Einhaltung der in diesem Vertrag niedergelegten Pflichten mit geeigneten Mitteln nach. Der Nachweis solcher Maßnahmen, die nicht nur den konkreten Auftrag betreffen, kann erfolgen durch&nbsp; 
+        <ul>
+            <li>
+                die Einhaltung genehmigter Verhaltensregeln gemäß Art. 40 DS-GVO; 
+            </li>
+            <li>
+                die Zertifizierung nach einem genehmigten Zertifizierungsverfahren gemäß Art. 42 DS-GVO; 
+            </li>
+            <li>
+                aktuelle Testate, Berichte oder Berichtsauszüge unabhängiger Instanzen (z.B. Wirtschaftsprüfer, Revision, Datenschutzbeauftragter, IT-Sicherheitsabteilung, Datenschutzauditoren, Qualitätsauditoren); 
+            </li>
+            <li>
+                eine geeignete Zertifizierung durch IT-Sicherheits- oder Datenschutzaudit (z.B. nach BSIGrundschutz). 
+            </li>
+        </ul>
+    </li>
+    <li>
+        Sollten im Einzelfall Inspektionen durch den Auftraggeber oder einen von diesem beauftragten Prüfer erforderlich sein, werden diese zu den üblichen Geschäftszeiten ohne Störung des Betriebsablaufs nach Anmeldung unter Berücksichtigung einer angemessenen Vorlaufzeit durchgeführt. Der Auftragnehmer darf diese von der vorherigen Anmeldung mit angemessener Vorlaufzeit und von der Unterzeichnung einer Verschwiegenheitserklärung hinsichtlich der Daten anderer Kunden und der eingerichteten technischen und organisatorischen Maßnahmen abhängig machen. Sollte der durch den Auftraggeber beauftragte Prüfer in einem Wettbewerbsverhältnis zu ConRat stehen, hat die ConRat GmbH gegen diesen ein Einspruchsrecht.
+    </li>
+    <li>
+        Für die Unterstützung bei der Durchführung einer Inspektion darf die ConRat GmbH eine Vergütung verlangen, wenn dies im Vertrag vereinbart ist. Der Aufwand einer Inspektion ist für ConRat grundsätzlich auf einen Tag pro Kalenderjahr begrenzt.&nbsp; 
+    </li>
+    <li>
+        Sollte eine Datenschutzaufsichtsbehörde oder eine sonstige hoheitliche Aufsichtsbehörde des Auftraggebers eine Inspektion vornehmen, gilt grundsätzlich Absatz 2 entsprechend. Eine Unterzeichnung einer Verschwiegenheitsverpflichtung ist nicht erforderlich, wenn diese Aufsichtsbehörde einer berufsrechtlichen oder gesetzlichen Verschwiegenheit unterliegt, bei der ein Verstoß nach dem Strafgesetzbuch strafbewehrt ist.&nbsp;&nbsp;
+    </li>
+</ol>
+<p>
+    <strong>§ 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Subunternehmer (weitere Auftragsverarbeiter)&nbsp;</strong>
+</p>
+<ol>
+    <li>
+        Der Auftraggeber stimmt zu, dass der Auftragnehmer Subunternehmer hinzuzieht. Vor Hinzuziehung oder Ersetzung der Subunternehmer informiert der Auftragnehmer den Auftraggeber. Der Auftraggeber kann der Änderung – innerhalb von zwei Wochen vor der Hinzuziehung oder Ersetzung – aus einem datenschutzrechtlichen Grund – gegenüber der vom Auftraggeber bezeichneten Stelle widersprechen. Erfolgt kein Widerspruch innerhalb der Frist gilt die Zustimmung zur Änderung als gegeben. Liegt ein wichtiger datenschutzrechtlicher Grund vor, und sofern eine einvernehmliche Lösungsfindung zwischen den Parteien nicht möglich ist, wird dem Auftraggeber ein Sonderkündigungsrecht eingeräumt.
+    </li>
+    <li>
+        Über die in&nbsp;<strong>Anlage 3</strong>&nbsp;aufgeführten Unterauftragnehmer wird mit Unterzeichnung dieses Vertrages die notwendige Information erteilt und Zustimmung seitens des Auftraggebers vorausgesetzt. Ergänzungen und Änderungen teilt ConRat auf geeignete Weise mit. Aktualisierungsinformationen werden immer auch unter&nbsp;<a href=\"https://www.some-solutions.de/dsgvo-verarbeiter\" target=\"_blank\" rel=\"noopener noreferrer\">https://www.some-solutions.de/dsgvo-verarbeiter</a>&nbsp;erfolgen.
+    </li>
+    <li>
+        ConRat wird mit Subunternehmen im erforderlichen Umfang Vereinbarungen treffen, um angemessene Datenschutz- und Informationssicherheitsmaßnahmen zu gewährleisten.&nbsp;&nbsp;<br>
+        &nbsp;
+    </li>
+</ol><p><br><br><br><br><br></p><p><br><br><br><br><br></p><p><br><br><br><br><br></p><p><br><br><br><br><br></p>
+<p><br><br>
+    <strong>§ 8 Informationspflichten, Schriftformklausel, Rechtswahl&nbsp;&nbsp;</strong>
+</p>
+<ol>
+    <li>
+        Sollten die Daten des Auftraggebers bei ConRat durch Pfändung oder Beschlagnahme, durch ein Insolvenz-&nbsp; 
+        oder Vergleichsverfahren oder durch sonstige Ereignisse oder Maßnahmen Dritter gefährdet werden, so hat ConRat den Auftraggeber unverzüglich darüber zu informieren. ConRat wird alle in diesem Zusammenhang Verantwortlichen unverzüglich darüber informieren, dass die Hoheit und das Eigentum an den Daten ausschließlich beim Auftraggeber als »Verantwortlicher « im Sinne der Datenschutz-Grundverordnung liegen.&nbsp; 
+    </li>
+    <li>
+        Änderungen und Ergänzungen dieser Anlage und aller ihrer Bestandteile – einschließlich etwaiger Zusicherungen der ConRat GmbH – bedürfen einer schriftlichen Vereinbarung, die auch in einem elektronischen Format (Textform) erfolgen kann, und des ausdrücklichen Hinweises darauf, dass es sich um eine Änderung bzw. Ergänzung dieser Bedingungen handelt. Dies gilt auch für den Verzicht auf dieses Formerfordernis. 
+    </li>
+    <li>
+        Bei etwaigen Widersprüchen gehen Regelungen dieser Anlage zum Datenschutz den Regelungen des Vertrages vor. Sollten einzelne Teile dieser Anlage unwirksam sein, so berührt dies die Wirksamkeit der Anlage im Übrigen nicht. 
+    </li>
+    <li>
+        Es gilt deutsches Recht.&nbsp;&nbsp;
+    </li>
+</ol>
+<p>
+    &nbsp;§ 9 Haftung und Schadensersatz&nbsp;&nbsp;
+</p>
+<p>
+    Auftraggeber und die ConRat GmbH haften gegenüber betroffener Personen entsprechend der in Art. 82 DSGVO getroffenen Regelung.&nbsp;
+</p>
+<p>
+    <br> </p><p> <br>  <br>
+    <strong>Anlage 1:</strong>&nbsp;<br>
+    Gegenstand und Dauer der Verarbeitung, Kategorien von Daten und betroffenen Personen, Art und Zweck der Datenverarbeitung &nbsp;
+</p>
+<p>
+    <strong>Anlage 2:</strong>&nbsp;<br>
+    Weisungsberechtigte Personen und Datenschutzbeauftragter&nbsp;
+</p>
+<p>
+    <strong>Anlage 3:</strong>&nbsp;<br>
+    Unterauftragnehmer mit Beschreibung der Leistungen / Teilleistungen&nbsp;
+</p>
+<p>
+    <strong>Anlage 4:</strong>&nbsp;<br>
+    Technische und organisatorische Maßnahmen nach Art. 32 DSGVO (vgl. auch § 3 Abs. 2)&nbsp;
+</p>
+<p>
+    &nbsp;
+</p>
+<p>
  
-<p><br /><br /><strong>Anlage 1 – Technische und organisatorischen Maßnahmen nach Art. 32 DSGVO</strong><br />
-<a href=\"https://somesolutions.de/toms/\" target=\"_blank\" rel=\"noopener noreferrer\">https://somesolutions.de/toms/</a></p>
-<p><strong>Anlage 2 – Weitere Auftragsverarbeiter nach Art. 28 Abs. 2 DSGVO</strong><br />
-<a href=\"https://somesolutions.de/dsgvo-verarbeiter\" target=\"_blank\" rel=\"noopener noreferrer\">https://somesolutions.de/dsgvo-verarbeiter</a></p>
- 
-<p><em>Diese Vereinbarung wurde am {$currentDate} um {$currentTime} mit der IP-Adresse: {$ipAddress} erstellt und ist sofort gültig. Der Vertrag wurde elektronisch geschlossen und ist ohne Unterschrift gültig.</em></p>
 
-<p><em>Die Vereinbarung entspricht den Anforderungen der Datenschutz-Grundverordnung (DSGVO) und des Bundesdatenschutzgesetzes (BDSG).</em></p>
+
+
 ";
     }
 
