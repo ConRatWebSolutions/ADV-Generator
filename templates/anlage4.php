@@ -8,11 +8,15 @@ class Anlage4
 {
     public static function getContent(): string
     {
+        $currentDate = date('d.m.Y');
         return '<p>
-   
+    <strong>Stand: ' . $currentDate . '</strong>
 </p>
 <p>
-    ConRat &nbsp;setzt folgende technische und organisatorische Maßnahmen zum Schutz der vertragsgegenständlichen personenbezogenen Daten um. Die Maßnahmen wurden im Einklang mit Art. 32 DSGVO festgelegt.
+    ConRat setzt folgende technische und organisatorische Maßnahmen zum Schutz der vertragsgegenständlichen personenbezogenen Daten um. Die Maßnahmen wurden im Einklang mit Art. 32 DSGVO festgelegt.
+</p>
+<p>
+    <strong>Hinweis:</strong> Diese Maßnahmen unterliegen dem technischen Fortschritt und werden fortlaufend angepasst. Änderungen sind zulässig, sofern das vereinbarte Sicherheitsniveau nicht unterschritten wird. Der Auftraggeber wird über wesentliche Änderungen informiert.
 </p>
 <p>
     1. Pseudonymisierung

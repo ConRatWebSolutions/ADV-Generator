@@ -285,6 +285,24 @@ class PDFConfig
     }
 
     /**
+     * Remove leading whitespace from HTML content
+     * @param string $html
+     * @return string
+     */
+    private function cleanHtmlWhitespace(string $html): string
+    {
+        // Entferne führende Leerzeichen/Zeilenumbrüche vor Tags
+        $html = preg_replace('/^\s+/m', '', $html);
+        // Entferne Leerzeichen direkt vor öffnenden Tags
+        $html = preg_replace('/\s+</', '<', $html);
+        // Entferne Leerzeichen direkt nach schließenden Tags
+        $html = preg_replace('/>\s+/', '>', $html);
+        // Entferne mehrfache Leerzeichen
+        $html = preg_replace('/\s{2,}/', ' ', $html);
+        return trim($html);
+    }
+
+    /**
      * Add agreement content to PDF using AgreementTemplate
      */
     private function addAgreementContent(array $userData): void
@@ -294,6 +312,9 @@ class PDFConfig
 
         // Get the agreement text from the template
         $agreementText = AgreementTemplate::generateAgreementText($userData);
+
+        // Entferne führende Leerzeichen
+        $agreementText = $this->cleanHtmlWhitespace($agreementText);
 
         // Add spacing between list items by modifying HTML structure
         // TCPDF doesn't reliably support CSS margins, so we add <br> tags
@@ -339,6 +360,9 @@ class PDFConfig
             // Get content from the Anlage class
             $content = call_user_func([$anlage['class'], 'getContent']);
 
+            // Entferne führende Leerzeichen
+            $content = $this->cleanHtmlWhitespace($content);
+
             // Add spacing between list items by modifying HTML structure
             // TCPDF doesn't reliably support CSS margins, so we add <br> tags
             $htmlContent = preg_replace('/(<\/li>)/i', '$1<br>', $content);
@@ -348,6 +372,12 @@ class PDFConfig
 
             // Add the content as HTML
             $this->pdf->writeHTML($htmlContent, true, false, true, false, '');
+
+            // Add date note at the end of each Anlage
+            $this->pdf->Ln(10);
+            $this->pdf->SetFont($this->config['font_family'], 'I', 9);
+            $currentDate = date('d.m.Y');
+            $this->pdf->Cell(0, 5, 'Erstellt am: ' . $currentDate, 0, 1, 'L');
         }
     }
 
