@@ -19,9 +19,9 @@ class Anlage2
 <p>
     <br>
     <strong>Datenschutzbeauftragter/Ansprechpartner der ConRat GmbH&nbsp;</strong><br>
-    Externer DSB:&nbsp;Datenschutz Nordhessen&nbsp;<br>
-    E-Mail: kontakt@datenschutz-nordhessen.de<br>
-    Telefon: 05651 / 320 3810<br>
+    Externer DSB:&nbsp;PadPort Datenschutz&nbsp;<br>
+    E-Mail: info@dsb-mitte.de<br>
+    Telefon: 0152 29283797<br>
     <br>
     &nbsp;
 </p>';

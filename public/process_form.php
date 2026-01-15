@@ -45,7 +45,7 @@ try {
     file_put_contents($logDir . 'access.log', "[{$timestamp}] [POST] User: {$userEmail} | IP: {$ip} | JSON erfolgreich dekodiert" . PHP_EOL, FILE_APPEND | LOCK_EX);
 
     // Erforderliche Felder prüfen
-    $required = ['vorname', 'name', 'email', 'firma', 'ansprechpartner', 'anschrift', 'plz', 'ort'];
+    $required = ['dienstleistung', 'vorname', 'name', 'email', 'firma', 'ansprechpartner', 'anschrift', 'plz', 'ort'];
     $missingFields = [];
     foreach ($required as $field) {
         if (empty($input[$field])) {

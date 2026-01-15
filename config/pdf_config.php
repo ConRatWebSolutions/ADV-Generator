@@ -255,7 +255,7 @@ class PDFConfig
             // Generate PDF content
             $this->addHeader();
             $this->addAgreementContent($userData);
-            $this->addAnlagen();
+            $this->addAnlagen($userData);
             $this->addFooter();
 
             // Output PDF
@@ -330,17 +330,31 @@ class PDFConfig
     /**
      * Add Anlagen (appendices) to PDF as separate pages
      */
-    private function addAnlagen(): void
+    private function addAnlagen(array $userData = []): void
     {
+        // Determine which Anlage 1 to load based on service
+        $dienstleistung = $userData['dienstleistung'] ?? 'webhosting';
+
+        // Map service to Anlage 1 class and file
+        $anlage1Map = [
+            'webhosting' => ['file' => 'anlage1-webhosting.php', 'class' => 'Anlage1Webhosting'],
+            'chatbot4you' => ['file' => 'anlage1-chatbot4you.php', 'class' => 'Anlage1Chatbot4you'],
+            'conrat-ai' => ['file' => 'anlage1-conrat-ai.php', 'class' => 'Anlage1ConratAi'],
+            'adventskalender' => ['file' => 'anlage1-adventskalender.php', 'class' => 'Anlage1Adventskalender']
+        ];
+
+        // Default to webhosting if service not found
+        $anlage1Config = $anlage1Map[$dienstleistung] ?? $anlage1Map['webhosting'];
+
         // Load Anlagen classes
-        require_once __DIR__ . '/../templates/anlage1.php';
+        require_once __DIR__ . '/../templates/' . $anlage1Config['file'];
         require_once __DIR__ . '/../templates/anlage2.php';
         require_once __DIR__ . '/../templates/anlage3.php';
         require_once __DIR__ . '/../templates/anlage4.php';
 
         // Add each Anlage as a new page
         $anlagen = [
-            ['class' => 'Anlage1', 'title' => 'Anlage 1 - Gegenstand der Verarbeitung'],
+            ['class' => $anlage1Config['class'], 'title' => 'Anlage 1 - Gegenstand der Verarbeitung'],
             ['class' => 'Anlage2', 'title' => 'Anlage 2 - Weisungsberechtigte Personen und Datenschutzbeauftragter'],
             ['class' => 'Anlage3', 'title' => 'Anlage 3 - Unterauftragnehmer'],
             ['class' => 'Anlage4', 'title' => 'Anlage 4 - Technische und organisatorische Maßnahmen']

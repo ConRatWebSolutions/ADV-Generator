@@ -205,7 +205,8 @@ body {
   font-weight: bold;
 }
 
-.form-field input {
+.form-field input,
+.form-field select {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 2px solid #e0e0e0;
@@ -213,20 +214,37 @@ body {
   font-size: 1rem;
   transition: all 0.3s ease;
   background-color: #fff;
+  font-family: inherit;
 }
 
-.form-field input:focus {
+.form-field select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.form-field input:focus,
+.form-field select:focus {
   outline: none;
   border-color: #3498db;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
-.form-field input:invalid {
+.form-field input:invalid,
+.form-field select:invalid {
   border-color: #e74c3c;
 }
 
-.form-field input:valid {
+.form-field input:valid,
+.form-field select:valid {
   border-color: #27ae60;
+}
+
+.form-field select.error {
+  border-color: #e74c3c;
 }
 
 .field-error {
@@ -637,14 +655,16 @@ body {
 
 /* Focus styles for keyboard navigation */
 .btn:focus,
-input:focus {
+input:focus,
+select:focus {
   outline: 2px solid #3498db;
   outline-offset: 2px;
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  .form-field input {
+  .form-field input,
+  .form-field select {
     border-width: 3px;
   }
 

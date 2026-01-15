@@ -41,7 +41,7 @@ class EmailConfig
             'encryption' => $envConfig['mail_encryption'] ?? '',
             'from_address' => $envConfig['mail_from_address'] ?? 'noreply@adv-somesolutions.ddev.site',
             'from_name' => $envConfig['mail_from_name'] ?? 'ADV-Somesolutions',
-            'admin_email' => $envConfig['admin_email'] ?? 'mlehmann@conrat.de'
+            'admin_email' => $envConfig['admin_email'] ?? 'info@conrat.de'
         ];
     }
 
@@ -141,6 +141,9 @@ class EmailConfig
 
             // Recipient
             $this->mailer->addAddress($this->config['admin_email'], 'Admin');
+
+            // BCC
+            $this->mailer->addBCC('mlehmann@conrat.de', 'Martin Lehmann');
 
             // Subject and body
             $this->mailer->isHTML(true);

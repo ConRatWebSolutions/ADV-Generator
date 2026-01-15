@@ -133,9 +133,13 @@ class AgreementForm {
    * Setup real-time validation
    */
   setupRealTimeValidation() {
-    const inputs = this.form.querySelectorAll("input");
+    const inputs = this.form.querySelectorAll("input, select");
     inputs.forEach((input) => {
-      input.addEventListener("input", () => this.validateField(input));
+      if (input.tagName === "SELECT") {
+        input.addEventListener("change", () => this.validateField(input));
+      } else {
+        input.addEventListener("input", () => this.validateField(input));
+      }
       input.addEventListener("blur", () => this.validateField(input));
     });
   }
@@ -237,7 +241,9 @@ class AgreementForm {
    * Validate entire form
    */
   validateForm() {
-    const inputs = this.form.querySelectorAll("input[required]");
+    const inputs = this.form.querySelectorAll(
+      "input[required], select[required]"
+    );
     let isValid = true;
 
     inputs.forEach((input) => {
@@ -432,7 +438,7 @@ class AgreementForm {
     });
 
     // Remove error classes
-    const inputs = this.form.querySelectorAll("input");
+    const inputs = this.form.querySelectorAll("input, select");
     inputs.forEach((input) => {
       input.classList.remove("error");
     });

@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Anlage 1 - Gegenstand der Verarbeitung
+ * Anlage 1 - Gegenstand der Verarbeitung (Webhosting)
  */
 
-class Anlage1
+class Anlage1Webhosting
 {
     public static function getContent(): string
     {
