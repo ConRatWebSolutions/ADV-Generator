@@ -1,17 +1,20 @@
 <?php
+
 /**
  * Environment Configuration Handler
  * Automatische Erkennung der Umgebung (DDEV vs. Remote-Server)
  */
 
-class EnvironmentConfig {
+class EnvironmentConfig
+{
     private static $config = null;
-    
+
     /**
      * Lade Umgebungskonfiguration
      * @return array
      */
-    public static function loadConfig(): array {
+    public static function loadConfig(): array
+    {
         if (self::$config === null) {
             // Prüfe auf DDEV-Umgebung
             if (self::isDdevEnvironment()) {
@@ -21,15 +24,16 @@ class EnvironmentConfig {
                 self::$config = self::loadProductionConfig();
             }
         }
-        
+
         return self::$config;
     }
-    
+
     /**
      * Prüfe ob DDEV-Umgebung erkannt wird
      * @return bool
      */
-    private static function isDdevEnvironment(): bool {
+    private static function isDdevEnvironment(): bool
+    {
         // DDEV-spezifische Erkennungsmerkmale
         return (
             // DDEV_HOSTNAME ist gesetzt
@@ -42,12 +46,13 @@ class EnvironmentConfig {
             (isset($_SERVER['DDEV_HOSTNAME']) && !empty($_SERVER['DDEV_HOSTNAME']))
         );
     }
-    
+
     /**
      * Lade DDEV-spezifische Konfiguration
      * @return array
      */
-    private static function loadDdevConfig(): array {
+    private static function loadDdevConfig(): array
+    {
         return [
             'environment' => 'local',
             'db_type' => 'mysql',
@@ -70,18 +75,19 @@ class EnvironmentConfig {
             'admin_email' => 'mlehmann@conrat.de'
         ];
     }
-    
+
     /**
      * Lade Produktionskonfiguration
      * @return array
      */
-    private static function loadProductionConfig(): array {
+    private static function loadProductionConfig(): array
+    {
         // Versuche .env Datei zu laden
         $envFile = __DIR__ . '/../.env.live';
         if (file_exists($envFile)) {
             return self::parseEnvFile($envFile);
         }
-        
+
         // Fallback auf Umgebungsvariablen (sollte .env.live verwenden)
         return [
             'environment' => getenv('ENVIRONMENT') ?: 'production',
@@ -105,36 +111,38 @@ class EnvironmentConfig {
             'admin_email' => getenv('ADMIN_EMAIL') ?: 'mlehmann@conrat.de'
         ];
     }
-    
+
     /**
      * Parse .env Datei
      * @param string $filePath
      * @return array
      */
-    private static function parseEnvFile(string $filePath): array {
+    private static function parseEnvFile(string $filePath): array
+    {
         $config = [];
         $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-        
+
         foreach ($lines as $line) {
             // Ignoriere Kommentare
             if (strpos(trim($line), '#') === 0) {
                 continue;
             }
-            
+
             // Parse KEY=VALUE Paare
             if (strpos($line, '=') !== false) {
                 list($key, $value) = explode('=', $line, 2);
                 $key = trim($key);
                 $value = trim($value);
-                
+
                 // Entferne Anführungszeichen falls vorhanden
                 if ((substr($value, 0, 1) === '"' && substr($value, -1) === '"') ||
-                    (substr($value, 0, 1) === "'" && substr($value, -1) === "'")) {
+                    (substr($value, 0, 1) === "'" && substr($value, -1) === "'")
+                ) {
                     $value = substr($value, 1, -1);
                 }
-                
+
                 $key = strtolower($key);
-                
+
                 // Konvertiere spezielle Werte
                 if ($key === 'db_port') {
                     $config[$key] = (int)$value;
@@ -143,34 +151,37 @@ class EnvironmentConfig {
                 }
             }
         }
-        
+
         return $config;
     }
-    
+
     /**
      * Hole spezifischen Konfigurationswert
      * @param string $key
      * @param mixed $default
      * @return mixed
      */
-    public static function get(string $key, $default = null) {
+    public static function get(string $key, $default = null)
+    {
         $config = self::loadConfig();
         return $config[$key] ?? $default;
     }
-    
+
     /**
      * Prüfe ob Debug-Modus aktiv ist
      * @return bool
      */
-    public static function isDebug(): bool {
+    public static function isDebug(): bool
+    {
         return (bool)self::get('debug', false);
     }
-    
+
     /**
      * Hole aktuelle Umgebung
      * @return string
      */
-    public static function getEnvironment(): string {
+    public static function getEnvironment(): string
+    {
         return self::get('environment', 'production');
     }
 }

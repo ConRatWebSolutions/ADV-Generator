@@ -13,7 +13,7 @@ class Anlage4
     <strong>Stand: ' . $currentDate . '</strong>
 </p>
 <p>
-    ConRat setzt folgende technische und organisatorische Maßnahmen zum Schutz der vertragsgegenständlichen personenbezogenen Daten um. Die Maßnahmen wurden im Einklang mit Art. 32 DSGVO festgelegt.
+    Der Auftragnehmer setzt folgende technische und organisatorische Maßnahmen zum Schutz der vertragsgegenständlichen personenbezogenen Daten um. Die Maßnahmen wurden im Einklang mit Art. 32 DSGVO festgelegt.
 </p>
 <p>
     <strong>Hinweis:</strong> Diese Maßnahmen unterliegen dem technischen Fortschritt und werden fortlaufend angepasst. Änderungen sind zulässig, sofern das vereinbarte Sicherheitsniveau nicht unterschritten wird. Der Auftraggeber wird über wesentliche Änderungen informiert.
