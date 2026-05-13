@@ -59,3 +59,6 @@ node_modules/
 # Backup files
 *.bak
 *.backup
+
+storage/pdfs/*
+storage/backup/*
