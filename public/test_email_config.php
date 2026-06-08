@@ -49,7 +49,7 @@ try {
     echo "<h2>E-Mail-Versendung Test:</h2>";
     echo "<p>Versuche Test-E-Mail zu senden...</p>";
 
-    $testEmail =  'mlehmann@conrat.de';
+    $testEmail =  'info@conrat.de';
 
     $mailer->clearAddresses();
     $mailer->clearAttachments();

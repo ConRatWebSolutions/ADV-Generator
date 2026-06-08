@@ -72,7 +72,7 @@ class EnvironmentConfig
             'mail_encryption' => '',
             'mail_from_address' => 'noreply@adv-somesolutions.ddev.site',
             'mail_from_name' => 'ADV-Somesolutions (DDEV)',
-            'admin_email' => 'mlehmann@conrat.de'
+            'admin_email' => 'info@conrat.de'
         ];
     }
 
