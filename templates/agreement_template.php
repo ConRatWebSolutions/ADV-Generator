@@ -158,6 +158,52 @@ Technische und organisatorische Maßnahmen nach Art. 32 DSGVO (vgl. auch § 3 Ab
     }
 
     /**
+     * Anlagen-Konfiguration (identisch mit PDF-Generierung)
+     * @return array<int, array{class: string, title: string}>
+     */
+    public static function getAnlagen(): array
+    {
+        return [
+            ['class' => 'Anlage1', 'title' => 'Anlage 1 - Gegenstand der Verarbeitung'],
+            ['class' => 'Anlage2', 'title' => 'Anlage 2 - Weisungsberechtigte Personen und Datenschutzbeauftragter'],
+            ['class' => 'Anlage3', 'title' => 'Anlage 3 - Unterauftragnehmer'],
+            ['class' => 'Anlage4', 'title' => 'Anlage 4 - Technische und organisatorische Maßnahmen'],
+        ];
+    }
+
+    /**
+     * Vollständigen Vereinbarungstext inkl. aller Anlagen als HTML (wie im PDF)
+     * @param array $data User data for personalization
+     * @return string Complete agreement HTML
+     */
+    public static function generateFullAgreementHtml(array $data): string
+    {
+        require_once __DIR__ . '/anlage1.php';
+        require_once __DIR__ . '/anlage2.php';
+        require_once __DIR__ . '/anlage3.php';
+        require_once __DIR__ . '/anlage4.php';
+
+        $currentDate = date('d.m.Y');
+
+        $html = '<div class="agreement-preview">';
+        $html .= '<h1>Vereinbarung zur Auftragsverarbeitung nach Art. 28 DSGVO</h1>';
+        $html .= self::generateAgreementText($data);
+
+        foreach (self::getAnlagen() as $anlage) {
+            $content = call_user_func([$anlage['class'], 'getContent']);
+            $html .= '<section class="anlage-section">';
+            $html .= '<h2>' . htmlspecialchars($anlage['title'], ENT_QUOTES, 'UTF-8') . '</h2>';
+            $html .= $content;
+            $html .= '<p class="anlage-date"><em>Erstellt am: ' . $currentDate . '</em></p>';
+            $html .= '</section>';
+        }
+
+        $html .= '</div>';
+
+        return $html;
+    }
+
+    /**
      * Get agreement metadata
      * @param array $data User data
      * @return array Metadata for the agreement

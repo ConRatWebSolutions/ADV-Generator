@@ -1,418 +1,318 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      DSGVO-Auftragsverarbeitungsvereinbarung - ConRat WebSolutions GmbH
-    </title>
-    <meta
-      name="description"
-      content="Erstellen Sie Ihre DSGVO-konforme Auftragsverarbeitungsvereinbarung online. Schnell, sicher und rechtlich einwandfrei."
-    />
-    <meta name="robots" content="index, follow" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    DSGVO-Auftragsverarbeitungsvereinbarung - ConRat WebSolutions GmbH
+  </title>
+  <meta name="description"
+    content="Erstellen Sie Ihre DSGVO-konforme Auftragsverarbeitungsvereinbarung online. Schnell, sicher und rechtlich einwandfrei." />
+  <meta name="robots" content="index, follow" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
 
-    <!-- Security Headers -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="container">
-        <div class="header-content">
-          <div class="logo">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <img src="conrat-logo.png" alt="ConRat Logo" class="logo-image" />
+          <div class="logo-text">
             <h1>ConRat WebSolutions</h1>
             <p class="tagline">DSGVO-Auftragsverarbeitungsvereinbarung</p>
           </div>
-          <div class="header-info">
-            <p class="contact-info">
-              <strong>Kontakt:</strong> info@conrat.de<br />
-            </p>
-          </div>
         </div>
-      </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="main">
-      <div class="container">
-        <!-- Progress Indicator -->
-        <div class="progress-indicator">
-          <div class="progress-step active" data-step="1">
-            <span class="step-number">1</span>
-            <span class="step-label">Daten eingeben</span>
-          </div>
-          <div class="progress-step" data-step="2">
-            <span class="step-number">2</span>
-            <span class="step-label">Überprüfen</span>
-          </div>
-          <div class="progress-step" data-step="3">
-            <span class="step-number">3</span>
-            <span class="step-label">Vereinbarung erstellen</span>
-          </div>
-        </div>
-
-        <!-- Form Section -->
-        <section class="form-section">
-          <div class="form-container">
-            <div class="form-header">
-              <h2>Auftragsverarbeitungsvereinbarung erstellen</h2>
-              <p class="form-description">
-                Füllen Sie das nachfolgende Formular aus, um Ihre DSGVO-konforme
-                Auftragsverarbeitungsvereinbarung zu erstellen. Alle Felder sind
-                Pflichtfelder.
-              </p>
-            </div>
-
-            <!-- Loading Indicator -->
-            <div
-              id="loading-indicator"
-              class="loading-indicator"
-              style="display: none"
-            >
-              <div class="spinner"></div>
-              <p>Vereinbarung wird erstellt...</p>
-            </div>
-
-            <!-- Success Message -->
-            <div
-              id="success-message"
-              class="success-message"
-              style="display: none"
-            >
-              <div class="success-icon">✅</div>
-              <h3>Vereinbarung erfolgreich erstellt!</h3>
-              <p>
-                Ihre DSGVO-Auftragsverarbeitungsvereinbarung wurde erstellt und
-                an Ihre E-Mail-Adresse gesendet.
-              </p>
-              <div class="success-actions">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  onclick="resetForm()"
-                >
-                  Neue Vereinbarung erstellen
-                </button>
-              </div>
-            </div>
-
-            <!-- Error Message -->
-            <div id="error-message" class="error-message" style="display: none">
-              <div class="error-icon">❌</div>
-              <h3>Fehler beim Erstellen der Vereinbarung</h3>
-              <p id="error-text">Ein unbekannter Fehler ist aufgetreten.</p>
-              <div class="error-actions">
-                <button
-                  type="button"
-                  class="btn btn-primary"
-                  onclick="hideError()"
-                >
-                  Erneut versuchen
-                </button>
-              </div>
-            </div>
-
-            <!-- Main Form -->
-            <form id="agreement-form" class="agreement-form" novalidate>
-              <!-- CSRF Token -->
-              <input type="hidden" id="csrf_token" name="csrf_token" value="" />
-
-              <!-- Personal Information -->
-              <fieldset class="form-group">
-                <legend>Persönliche Daten</legend>
-
-                <div class="form-row">
-                  <div class="form-field">
-                    <label for="vorname" class="required">Vorname</label>
-                    <input
-                      type="text"
-                      id="vorname"
-                      name="vorname"
-                      required
-                      placeholder="Ihr Vorname"
-                      minlength="2"
-                      maxlength="100"
-                      autocomplete="given-name"
-                    />
-                    <div class="field-error" id="vorname-error"></div>
-                  </div>
-
-                  <div class="form-field">
-                    <label for="name" class="required">Nachname</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      placeholder="Ihr Nachname"
-                      minlength="2"
-                      maxlength="100"
-                      autocomplete="family-name"
-                    />
-                    <div class="field-error" id="name-error"></div>
-                  </div>
-                </div>
-
-                <div class="form-field">
-                  <label for="email" class="required">E-Mail-Adresse</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="ihre.email@beispiel.de"
-                    maxlength="255"
-                    autocomplete="email"
-                  />
-                  <div class="field-error" id="email-error"></div>
-                </div>
-              </fieldset>
-
-              <!-- Company Information -->
-              <fieldset class="form-group">
-                <legend>Firmendaten</legend>
-
-                <div class="form-field">
-                  <label for="firma" class="required">Firmenname</label>
-                  <input
-                    type="text"
-                    id="firma"
-                    name="firma"
-                    required
-                    placeholder="Ihr Firmenname"
-                    minlength="2"
-                    maxlength="255"
-                    autocomplete="organization"
-                  />
-                  <div class="field-error" id="firma-error"></div>
-                </div>
-
-                <div class="form-field">
-                  <label for="ansprechpartner" class="required"
-                    >Ansprechpartner</label
-                  >
-                  <input
-                    type="text"
-                    id="ansprechpartner"
-                    name="ansprechpartner"
-                    required
-                    placeholder="Name des Ansprechpartners"
-                    minlength="2"
-                    maxlength="255"
-                    autocomplete="name"
-                  />
-                  <div class="field-error" id="ansprechpartner-error"></div>
-                </div>
-              </fieldset>
-
-              <!-- Address Information -->
-              <fieldset class="form-group">
-                <legend>Adressdaten</legend>
-
-                <div class="form-field">
-                  <label for="anschrift" class="required"
-                    >Straße und Hausnummer</label
-                  >
-                  <input
-                    type="text"
-                    id="anschrift"
-                    name="anschrift"
-                    required
-                    placeholder="Musterstraße 123"
-                    minlength="5"
-                    maxlength="500"
-                    autocomplete="street-address"
-                  />
-                  <div class="field-error" id="anschrift-error"></div>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-field">
-                    <label for="plz" class="required">Postleitzahl</label>
-                    <input
-                      type="text"
-                      id="plz"
-                      name="plz"
-                      required
-                      placeholder="12345"
-                      pattern="[0-9]{5}"
-                      minlength="5"
-                      maxlength="10"
-                      autocomplete="postal-code"
-                    />
-                    <div class="field-error" id="plz-error"></div>
-                  </div>
-
-                  <div class="form-field">
-                    <label for="ort" class="required">Ort</label>
-                    <input
-                      type="text"
-                      id="ort"
-                      name="ort"
-                      required
-                      placeholder="Musterstadt"
-                      minlength="2"
-                      maxlength="255"
-                      autocomplete="address-level2"
-                    />
-                    <div class="field-error" id="ort-error"></div>
-                  </div>
-                </div>
-              </fieldset>
-
-              <!-- Privacy Notice -->
-              <div class="privacy-notice">
-                <h3>Datenschutzhinweis</h3>
-                <p>
-                  Die von Ihnen eingegebenen Daten werden ausschließlich zur
-                  Erstellung der Auftragsverarbeitungsvereinbarung verwendet und
-                  nach DSGVO-konformen Standards verarbeitet. Weitere
-                  Informationen finden Sie in unserer
-                  <a href="datenschutz.html" target="_blank"
-                    >Datenschutzerklärung</a
-                  >.
-                </p>
-              </div>
-
-              <!-- Submit Button -->
-              <div class="form-actions">
-                <button
-                  type="button"
-                  class="btn btn-secondary btn-large"
-                  id="preview-btn"
-                >
-                  <span class="btn-text">Vorschau</span>
-                </button>
-                <button
-                  type="submit"
-                  class="btn btn-primary btn-large"
-                  id="submit-btn"
-                >
-                  <span class="btn-text">Vereinbarung erstellen</span>
-                  <span class="btn-loading" style="display: none">
-                    <span class="spinner-small"></span>
-                    Wird erstellt...
-                  </span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </section>
-
-        <!-- Information Section -->
-        <section class="info-section">
-          <div class="info-container">
-            <h3>Was passiert nach dem Absenden?</h3>
-            <div class="info-steps" id="process-steps">
-              <div class="info-step" data-step="1">
-                <div class="step-icon">
-                  <div class="step-icon-inner">📝</div>
-                  <div class="check-icon">✓</div>
-                </div>
-                <h4>1. Datenverarbeitung</h4>
-                <p>
-                  Ihre Daten werden sicher verarbeitet und in der Datenbank
-                  gespeichert.
-                </p>
-              </div>
-              <div class="info-step" data-step="2">
-                <div class="step-icon">
-                  <div class="step-icon-inner">📄</div>
-                  <div class="check-icon">✓</div>
-                </div>
-                <h4>2. PDF-Generierung</h4>
-                <p>
-                  Eine personalisierte DSGVO-Vereinbarung wird als PDF erstellt.
-                </p>
-              </div>
-              <div class="info-step" data-step="3">
-                <div class="step-icon">
-                  <div class="step-icon-inner">📧</div>
-                  <div class="check-icon">✓</div>
-                </div>
-                <h4>3. E-Mail-Versand</h4>
-                <p>
-                  Die Vereinbarung wird an Sie und den Administrator gesendet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-info">
-            <p>
-              &copy; 2025 ConRat WebSolutions GmbH. Alle Rechte vorbehalten.
-            </p>
-            <p>
-              <a href="https://somesolutions.de/privacy-policy/" target="_blank"
-                >Datenschutz</a
-              >
-              |
-              <a href="https://somesolutions.de/impressum/" target="_blank"
-                >Impressum</a
-              >
-              |
-            </p>
-          </div>
-          <div class="footer-contact">
-            <p><strong>Kontakt:</strong>info@conrat.de</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Preview Modal -->
-    <div id="preview-modal" class="modal" style="display: none">
-      <div class="modal-overlay"></div>
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Vorschau der Vereinbarung</h2>
-          <button
-            type="button"
-            class="modal-close"
-            id="modal-close-btn"
-            aria-label="Schließen"
-          >
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="preview-content">
-          <div class="modal-loading">
-            <div class="spinner"></div>
-            <p>Vorschau wird geladen...</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            id="modal-close-btn-footer"
-          >
-            Schließen
-          </button>
-          <button type="button" class="btn btn-primary" id="modal-submit-btn">
-            Vereinbarung erstellen
-          </button>
+        <div class="header-info">
+          <p class="header-products">
+            <a href="https://chatbot4you.de" target="_blank">ChatBot4You</a> /
+            <a href="https://conrat-ai.de" target="_blank">ConRat-AI</a> <br>
+            <a href="https://adventskalender.conrat.de" target="_blank">Adventskalender-Tuerchen</a> <br>
+            <a href="https://conrat.de" target="_blank">ConRat WebSolutions</a>
+          </p>
         </div>
       </div>
     </div>
+  </header>
 
-    <!-- JavaScript -->
-    <script src="assets/js/form.js"></script>
-  </body>
+  <!-- Main Content -->
+  <main class="main">
+    <div class="container">
+      <!-- Progress Indicator -->
+      <div class="progress-indicator">
+        <div class="progress-step active" data-step="1">
+          <span class="step-number">1</span>
+          <span class="step-label">Daten eingeben</span>
+        </div>
+        <div class="progress-step" data-step="2">
+          <span class="step-number">2</span>
+          <span class="step-label">Überprüfen</span>
+        </div>
+        <div class="progress-step" data-step="3">
+          <span class="step-number">3</span>
+          <span class="step-label">Vereinbarung erstellen</span>
+        </div>
+      </div>
+
+      <!-- Form Section -->
+      <section class="form-section">
+        <div class="form-container">
+          <div class="form-header">
+            <h2>Auftragsverarbeitungsvereinbarung erstellen</h2>
+            <p class="form-description">
+              Füllen Sie das nachfolgende Formular aus, um Ihre DSGVO-konforme
+              Auftragsverarbeitungsvereinbarung zu erstellen. Alle Felder sind
+              Pflichtfelder.
+            </p>
+          </div>
+
+          <!-- Loading Indicator -->
+          <div id="loading-indicator" class="loading-indicator" style="display: none">
+            <div class="spinner"></div>
+            <p>Vereinbarung wird erstellt...</p>
+          </div>
+
+          <!-- Success Message -->
+          <div id="success-message" class="success-message" style="display: none">
+            <div class="success-icon">✅</div>
+            <h3>Vereinbarung erfolgreich erstellt!</h3>
+            <p>
+              Ihre DSGVO-Auftragsverarbeitungsvereinbarung wurde erstellt und
+              an Ihre E-Mail-Adresse gesendet.
+            </p>
+            <div class="success-actions">
+              <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                Neue Vereinbarung erstellen
+              </button>
+            </div>
+          </div>
+
+          <!-- Error Message -->
+          <div id="error-message" class="error-message" style="display: none">
+            <div class="error-icon">❌</div>
+            <h3>Fehler beim Erstellen der Vereinbarung</h3>
+            <p id="error-text">Ein unbekannter Fehler ist aufgetreten.</p>
+            <div class="error-actions">
+              <button type="button" class="btn btn-primary" onclick="hideError()">
+                Erneut versuchen
+              </button>
+            </div>
+          </div>
+
+          <!-- Main Form -->
+          <form id="agreement-form" class="agreement-form" novalidate>
+            <!-- CSRF Token -->
+            <input type="hidden" id="csrf_token" name="csrf_token" value="" />
+
+            <!-- Personal Information -->
+            <fieldset class="form-group">
+              <legend>Persönliche Daten</legend>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="vorname" class="required">Vorname</label>
+                  <input type="text" id="vorname" name="vorname" required placeholder="Ihr Vorname" minlength="2"
+                    maxlength="100" autocomplete="given-name" />
+                  <div class="field-error" id="vorname-error"></div>
+                </div>
+
+                <div class="form-field">
+                  <label for="name" class="required">Nachname</label>
+                  <input type="text" id="name" name="name" required placeholder="Ihr Nachname" minlength="2"
+                    maxlength="100" autocomplete="family-name" />
+                  <div class="field-error" id="name-error"></div>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="email" class="required">E-Mail-Adresse</label>
+                <input type="email" id="email" name="email" required placeholder="ihre.email@beispiel.de"
+                  maxlength="255" autocomplete="email" />
+                <div class="field-error" id="email-error"></div>
+              </div>
+            </fieldset>
+
+            <!-- Company Information -->
+            <fieldset class="form-group">
+              <legend>Firmendaten</legend>
+
+              <div class="form-field">
+                <label for="firma" class="required">Firmenname</label>
+                <input type="text" id="firma" name="firma" required placeholder="Ihr Firmenname" minlength="2"
+                  maxlength="255" autocomplete="organization" />
+                <div class="field-error" id="firma-error"></div>
+              </div>
+
+              <div class="form-field">
+                <label for="ansprechpartner" class="required">Ansprechpartner</label>
+                <input type="text" id="ansprechpartner" name="ansprechpartner" required
+                  placeholder="Name des Ansprechpartners" minlength="2" maxlength="255" autocomplete="name" />
+                <div class="field-error" id="ansprechpartner-error"></div>
+              </div>
+            </fieldset>
+
+            <!-- Address Information -->
+            <fieldset class="form-group">
+              <legend>Adressdaten</legend>
+
+              <div class="form-field">
+                <label for="anschrift" class="required">Straße und Hausnummer</label>
+                <input type="text" id="anschrift" name="anschrift" required placeholder="Musterstraße 123" minlength="5"
+                  maxlength="500" autocomplete="street-address" />
+                <div class="field-error" id="anschrift-error"></div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="plz" class="required">Postleitzahl</label>
+                  <input type="text" id="plz" name="plz" required placeholder="12345" pattern="[0-9]{5}" minlength="5"
+                    maxlength="10" autocomplete="postal-code" />
+                  <div class="field-error" id="plz-error"></div>
+                </div>
+
+                <div class="form-field">
+                  <label for="ort" class="required">Ort</label>
+                  <input type="text" id="ort" name="ort" required placeholder="Musterstadt" minlength="2"
+                    maxlength="255" autocomplete="address-level2" />
+                  <div class="field-error" id="ort-error"></div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Privacy Notice -->
+            <div class="privacy-notice">
+              <h3>Datenschutzhinweis</h3>
+              <p>
+                Die von Ihnen eingegebenen Daten werden ausschließlich zur
+                Erstellung der Auftragsverarbeitungsvereinbarung verwendet und
+                nach DSGVO-konformen Standards verarbeitet. Weitere
+                Informationen finden Sie in unserer
+                <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a>.
+              </p>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary btn-large" id="preview-btn">
+                <span class="btn-text">Vorschau</span>
+              </button>
+              <button type="submit" class="btn btn-primary btn-large" id="submit-btn">
+                <span class="btn-text">Vereinbarung erstellen</span>
+                <span class="btn-loading" style="display: none">
+                  <span class="spinner-small"></span>
+                  Wird erstellt...
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Information Section -->
+      <section class="info-section">
+        <div class="info-container">
+          <h3>Was passiert nach dem Absenden?</h3>
+          <div class="info-steps" id="process-steps">
+            <div class="info-step" data-step="1">
+              <div class="step-icon">
+                <div class="step-icon-inner">📝</div>
+                <div class="check-icon">✓</div>
+              </div>
+              <h4>1. Datenverarbeitung</h4>
+              <p>
+                Ihre Daten werden sicher verarbeitet und in der Datenbank
+                gespeichert.
+              </p>
+            </div>
+            <div class="info-step" data-step="2">
+              <div class="step-icon">
+                <div class="step-icon-inner">📄</div>
+                <div class="check-icon">✓</div>
+              </div>
+              <h4>2. PDF-Generierung</h4>
+              <p>
+                Eine personalisierte DSGVO-Vereinbarung wird als PDF erstellt.
+              </p>
+            </div>
+            <div class="info-step" data-step="3">
+              <div class="step-icon">
+                <div class="step-icon-inner">📧</div>
+                <div class="check-icon">✓</div>
+              </div>
+              <h4>3. E-Mail-Versand</h4>
+              <p>
+                Die Vereinbarung wird an Sie und den Administrator gesendet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <p>
+            &copy; 2025 ConRat WebSolutions GmbH. Alle Rechte vorbehalten.
+          </p>
+          <p>
+            <a href="https://somesolutions.de/privacy-policy/" target="_blank">Datenschutz</a>
+            |
+            <a href="https://somesolutions.de/impressum/" target="_blank">Impressum</a>
+            |
+          </p>
+        </div>
+        <div class="footer-contact">
+          <p><strong>Kontakt:</strong>info@conrat.de</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Preview Modal -->
+  <div id="preview-modal" class="modal" style="display: none">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Vorschau der Vereinbarung</h2>
+        <button type="button" class="modal-close" id="modal-close-btn" aria-label="Schließen">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="preview-content">
+        <div class="modal-loading">
+          <div class="spinner"></div>
+          <p>Vorschau wird geladen...</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="modal-close-btn-footer">
+          Schließen
+        </button>
+        <button type="button" class="btn btn-primary" id="modal-submit-btn">
+          Vereinbarung erstellen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="assets/js/form.js"></script>
+</body>
+
 </html>

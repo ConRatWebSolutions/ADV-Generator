@@ -332,21 +332,13 @@ class PDFConfig
      */
     private function addAnlagen(array $userData = []): void
     {
-        // Immer die gemeinsame Anlage 1 verwenden
+        require_once __DIR__ . '/../templates/agreement_template.php';
         require_once __DIR__ . '/../templates/anlage1.php';
         require_once __DIR__ . '/../templates/anlage2.php';
         require_once __DIR__ . '/../templates/anlage3.php';
         require_once __DIR__ . '/../templates/anlage4.php';
 
-        // Add each Anlage as a new page
-        $anlagen = [
-            ['class' => 'Anlage1', 'title' => 'Anlage 1 - Gegenstand der Verarbeitung'],
-            ['class' => 'Anlage2', 'title' => 'Anlage 2 - Weisungsberechtigte Personen und Datenschutzbeauftragter'],
-            ['class' => 'Anlage3', 'title' => 'Anlage 3 - Unterauftragnehmer'],
-            ['class' => 'Anlage4', 'title' => 'Anlage 4 - Technische und organisatorische Maßnahmen']
-        ];
-
-        foreach ($anlagen as $anlage) {
+        foreach (AgreementTemplate::getAnlagen() as $anlage) {
             // Add new page for each Anlage
             // Header image will be added automatically via Header() method
             // Header() method already sets Y position below the image

@@ -114,6 +114,37 @@ ADV-somesolutions/
    - PDF mit TCPDF generieren → `storage/pdfs/`
    - E-Mail mit PHPMailer versenden (an Nutzer + Admin)
 
+### PDF-Speicherung
+
+Generierte PDFs werden **dauerhaft auf dem Dateisystem** gespeichert, nicht nur als E-Mail-Anhang versendet.
+
+| Aspekt | Details |
+| ------ | ------- |
+| Speicherort | `storage/pdfs/` (Ordner wird bei Bedarf automatisch angelegt) |
+| Dateiname | `Auftragsverarbeitungsvereinbarung_{Firma}_{Datum}.pdf` |
+| Datenbank | Pfad wird in `auftragsverarbeitungsvereinbarungen.pdf_pfad` gespeichert |
+| Git | `storage/pdfs/` ist in `.gitignore` – PDFs liegen nur auf dem Server, nicht im Repository |
+
+### E-Mail-Versand
+
+Nach erfolgreicher PDF-Generierung werden **zwei separate E-Mails** mit PDF-Anhang versendet:
+
+| Empfänger | Adresse | Inhalt |
+| --------- | ------- | ------ |
+| **Nutzer** | E-Mail-Adresse aus dem Formular | Bestätigung mit PDF-Anhang |
+| **Admin** | `admin_email` aus der Konfiguration | Benachrichtigung mit Firmendaten und PDF-Anhang |
+
+**Konfiguration `admin_email`:**
+
+- Lokal (DDEV): `info@conrat.de` (in `config/environment.php`)
+- Produktion: `admin_email` in `.env.live` (Fallback: `mlehmann@conrat.de`)
+
+Der Gesamtvorgang gilt nur als erfolgreich, wenn **beide** E-Mails versendet wurden. Status und Logs:
+
+- Datenbank-Status: `versendet` oder `fehler`
+- Logs: `logs/mailsend.log`, `logs/access.log`
+- Lokal: E-Mails in **Mailpit** prüfen (siehe [Lokale URLs](#lokale-urls))
+
 ## Technologie-Stack
 
 | Komponente   | Technologie                                         |

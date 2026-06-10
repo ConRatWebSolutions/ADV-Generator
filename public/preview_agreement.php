@@ -80,19 +80,10 @@ try {
         ]);
     }
 
-    // Load template
+    // Load template and generate full agreement HTML (Hauptvertrag + Anlagen 1–4, wie im PDF)
     require_once __DIR__ . '/../templates/agreement_template.php';
+    $html = AgreementTemplate::generateFullAgreementHtml($input);
 
-    // Generate agreement text
-    $agreementText = AgreementTemplate::generateAgreementText($input);
-
-    // Wrap in container with title
-    $html = '<div class="agreement-preview">';
-    $html .= '<h1>Vereinbarung zur Auftragsverarbeitung nach Art. 28 DSGVO</h1>';
-    $html .= $agreementText;
-    $html .= '</div>';
-
-    // Return success with HTML (json_encode will properly escape the HTML)
     outputJson([
         'success' => true,
         'html' => $html
