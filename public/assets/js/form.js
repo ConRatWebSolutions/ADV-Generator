@@ -470,14 +470,10 @@ class AgreementForm {
    * Show preview modal
    */
   async showPreview() {
-    // Validate form before showing preview
     if (!this.validateForm()) {
-      this.showError(
-        "Bitte korrigieren Sie die markierten Fehler, bevor Sie die Vorschau anzeigen können."
-      );
+      this.showError("Bitte korrigieren Sie die markierten Fehler, bevor Sie die Vorschau anzeigen können.");
       return;
     }
-
     // Get form data
     const formData = this.getFormData();
 
@@ -490,6 +486,11 @@ class AgreementForm {
     modal.style.display = "flex";
     previewContent.innerHTML =
       '<div class="modal-loading"><div class="spinner"></div><p>Vorschau wird geladen...</p></div>';
+
+    const musterBtn = document.getElementById("muster-download-btn");
+    if (musterBtn) musterBtn.style.display = "none";
+    const submitBtn2 = document.getElementById("modal-submit-btn");
+    if (submitBtn2) submitBtn2.style.display = "";
 
     // Prevent body scroll
     document.body.style.overflow = "hidden";
@@ -671,6 +672,49 @@ function resetForm() {
 function hideError() {
   if (window.agreementForm) {
     window.agreementForm.hideMessages();
+  }
+}
+
+async function showMusterPreview() {
+  const musterData = {
+    vorname: "Max",
+    name: "Muster",
+    email: "max.muster@muster-gmbh.de",
+    firma: "Muster GmbH",
+    ansprechpartner: "Max Muster",
+    anschrift: "Musterstraße 1",
+    plz: "12345",
+    ort: "Musterstadt",
+    dienstleistung: "webhosting",
+    csrf_token: document.getElementById("csrf_token")?.value || "",
+  };
+
+  const modal = document.getElementById("preview-modal");
+  const content = document.getElementById("preview-content");
+  const submitBtn = document.getElementById("modal-submit-btn");
+  if (!modal || !content) return;
+
+  // Modal öffnen, Submit-Button ausblenden, Muster-Download einblenden
+  modal.style.display = "flex";
+  if (submitBtn) submitBtn.style.display = "none";
+  const musterDownloadBtn = document.getElementById("muster-download-btn");
+  if (musterDownloadBtn) musterDownloadBtn.style.display = "inline-flex";
+  content.innerHTML = '<div class="modal-loading"><div class="spinner"></div><p>Muster wird geladen...</p></div>';
+
+  try {
+    const response = await fetch("preview_agreement.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(musterData),
+    });
+    const data = await response.json();
+    if (data.success && data.html) {
+      content.innerHTML = data.html;
+    } else {
+      content.innerHTML = "<p>Vorschau konnte nicht geladen werden.</p>";
+    }
+  } catch (e) {
+    content.innerHTML = "<p>Fehler beim Laden der Vorschau.</p>";
   }
 }
 

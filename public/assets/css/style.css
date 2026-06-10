@@ -342,6 +342,17 @@ body {
   background: #7f8c8d;
 }
 
+.btn-muster {
+  background: linear-gradient(135deg, #27ae60 0%, #219a52 100%);
+  color: white;
+}
+
+.btn-muster:hover {
+  background: linear-gradient(135deg, #219a52 0%, #1a7a41 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
 .btn-large {
   padding: 1rem 2rem;
   font-size: 1.1rem;
