@@ -93,9 +93,9 @@
               an Ihre E-Mail-Adresse gesendet.
             </p>
             <div class="success-actions">
-              <button type="button" class="btn btn-secondary" onclick="resetForm()">
-                Neue Vereinbarung erstellen
-              </button>
+              <a id="download-btn" href="#" class="btn btn-primary btn-large" style="display: none" download>
+                ⬇ Jetzt herunterladen
+              </a>
             </div>
           </div>
 
@@ -221,7 +221,7 @@
       </section>
 
       <!-- Information Section -->
-      <section class="info-section">
+      <section class="info-section" id="info-section" style="display: none">
         <div class="info-container">
           <h3>Was passiert nach dem Absenden?</h3>
           <div class="info-steps" id="process-steps">
@@ -253,7 +253,7 @@
               </div>
               <h4>3. E-Mail-Versand</h4>
               <p>
-                Die Vereinbarung wird an Sie und den Administrator gesendet.
+                Die Vereinbarung wird an Sie per E-Mail gesendet.
               </p>
             </div>
           </div>

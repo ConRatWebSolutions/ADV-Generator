@@ -76,38 +76,40 @@ class AgreementForm {
   async handleSubmit(event) {
     event.preventDefault();
 
-    // Validate form before submission
     if (!this.validateForm()) {
       this.showError("Bitte korrigieren Sie die markierten Fehler.");
       return;
     }
 
-    // Show loading state
     this.showLoading();
 
-    // Start process animation
+    const infoSection = document.getElementById("info-section");
+    if (infoSection) infoSection.style.display = "block";
+
+    const animationStart = Date.now();
+    const ANIMATION_DURATION = 6500;
     this.animateProcessSteps();
 
+    let response;
     try {
-      // Prepare form data
-      const formData = this.getFormData();
-
-      // Submit via AJAX
-      const response = await this.submitForm(formData);
-
-      if (response.success) {
-        this.showSuccess();
-        this.updateProgress(3);
-      } else {
-        this.showError(response.message || "Ein Fehler ist aufgetreten.");
-      }
+      response = await this.submitForm(this.getFormData());
     } catch (error) {
       console.error("Form submission error:", error);
-      this.showError(
-        "Ein Netzwerkfehler ist aufgetreten. Bitte versuchen Sie es erneut."
-      );
-    } finally {
       this.hideLoading();
+      this.showError("Ein Netzwerkfehler ist aufgetreten. Bitte versuchen Sie es erneut.");
+      return;
+    }
+
+    if (response.success) {
+      const remaining = Math.max(0, ANIMATION_DURATION - (Date.now() - animationStart));
+      setTimeout(() => {
+        this.hideLoading();
+        this.showSuccess(response.pdf_path);
+        this.updateProgress(3);
+      }, remaining);
+    } else {
+      this.hideLoading();
+      this.showError(response.message || "Ein Fehler ist aufgetreten.");
     }
   }
 
@@ -385,9 +387,25 @@ class AgreementForm {
   /**
    * Show success message
    */
-  showSuccess() {
-    this.successMessage.style.display = "block";
+  showSuccess(pdfPath) {
     this.hideMessages();
+    const downloadBtn = document.getElementById("download-btn");
+    if (downloadBtn) {
+      if (pdfPath) {
+        const filename = pdfPath.split("/").pop();
+        downloadBtn.href = "download_pdf.php?file=" + encodeURIComponent(filename);
+        downloadBtn.removeAttribute("disabled");
+        downloadBtn.style.opacity = "";
+        downloadBtn.style.cursor = "";
+      } else {
+        downloadBtn.href = "#";
+        downloadBtn.setAttribute("disabled", "disabled");
+        downloadBtn.style.opacity = "0.5";
+        downloadBtn.style.cursor = "not-allowed";
+      }
+      downloadBtn.style.display = "inline-flex";
+    }
+    this.successMessage.style.display = "block";
   }
 
   /**
@@ -429,6 +447,11 @@ class AgreementForm {
     this.form.style.display = "block";
     this.hideMessages();
     this.updateProgress(1);
+    const downloadBtn = document.getElementById("download-btn");
+    if (downloadBtn) {
+      downloadBtn.style.display = "none";
+      downloadBtn.href = "#";
+    }
 
     // Clear all field errors
     const errorElements = this.form.querySelectorAll(".field-error");
@@ -536,35 +559,36 @@ class AgreementForm {
    * Submit form from modal
    */
   async submitFromModal() {
-    // Close modal first
     this.closePreview();
-
-    // Show loading state
     this.showLoading();
 
-    // Start process animation
+    const infoSection = document.getElementById("info-section");
+    if (infoSection) infoSection.style.display = "block";
+
+    const animationStart = Date.now();
+    const ANIMATION_DURATION = 6500;
     this.animateProcessSteps();
 
+    let response;
     try {
-      // Prepare form data
-      const formData = this.getFormData();
-
-      // Submit via AJAX
-      const response = await this.submitForm(formData);
-
-      if (response.success) {
-        this.showSuccess();
-        this.updateProgress(3);
-      } else {
-        this.showError(response.message || "Ein Fehler ist aufgetreten.");
-      }
+      response = await this.submitForm(this.getFormData());
     } catch (error) {
       console.error("Form submission error:", error);
-      this.showError(
-        "Ein Netzwerkfehler ist aufgetreten. Bitte versuchen Sie es erneut."
-      );
-    } finally {
       this.hideLoading();
+      this.showError("Ein Netzwerkfehler ist aufgetreten. Bitte versuchen Sie es erneut.");
+      return;
+    }
+
+    if (response.success) {
+      const remaining = Math.max(0, ANIMATION_DURATION - (Date.now() - animationStart));
+      setTimeout(() => {
+        this.hideLoading();
+        this.showSuccess(response.pdf_path);
+        this.updateProgress(3);
+      }, remaining);
+    } else {
+      this.hideLoading();
+      this.showError(response.message || "Ein Fehler ist aufgetreten.");
     }
   }
 
