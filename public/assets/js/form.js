@@ -104,7 +104,7 @@ class AgreementForm {
       const remaining = Math.max(0, ANIMATION_DURATION - (Date.now() - animationStart));
       setTimeout(() => {
         this.hideLoading();
-        this.showSuccess(response.pdf_path);
+        this.showSuccess(response.download_token);
         this.updateProgress(3);
       }, remaining);
     } else {
@@ -387,13 +387,12 @@ class AgreementForm {
   /**
    * Show success message
    */
-  showSuccess(pdfPath) {
+  showSuccess(downloadToken) {
     this.hideMessages();
     const downloadBtn = document.getElementById("download-btn");
     if (downloadBtn) {
-      if (pdfPath) {
-        const filename = pdfPath.split("/").pop();
-        downloadBtn.href = "download_pdf.php?file=" + encodeURIComponent(filename);
+      if (downloadToken) {
+        downloadBtn.href = "download_secure.php?token=" + encodeURIComponent(downloadToken);
         downloadBtn.removeAttribute("disabled");
         downloadBtn.style.opacity = "";
         downloadBtn.style.cursor = "";
@@ -583,7 +582,7 @@ class AgreementForm {
       const remaining = Math.max(0, ANIMATION_DURATION - (Date.now() - animationStart));
       setTimeout(() => {
         this.hideLoading();
-        this.showSuccess(response.pdf_path);
+        this.showSuccess(response.download_token);
         this.updateProgress(3);
       }, remaining);
     } else {

@@ -360,9 +360,6 @@ class EmailConfig
             $this->mailer->Body = $body;
             $this->mailer->AltBody = strip_tags($body);
 
-            // Attach PDF
-            $this->mailer->addAttachment($pdfPath, 'Auftragsverarbeitungsvereinbarung.pdf');
-
             $result = $this->mailer->send();
 
             if ($result) {
@@ -436,18 +433,40 @@ class EmailConfig
      */
     private function generateUserEmailBody(array $userData): string
     {
+        $config = EnvironmentConfig::loadConfig();
+        $baseUrl = rtrim($config['base_url'] ?? '', '/');
+
+        $downloadSection = '';
+        if (!empty($userData['download_token'])) {
+            $downloadUrl = $baseUrl . '/download_secure.php?token=' . urlencode($userData['download_token']);
+            $downloadSection = "
+        <p style='margin:1.5rem 0;'>
+            <a href='{$downloadUrl}' style='background:#3498db;color:#fff;padding:12px 24px;border-radius:6px;text-decoration:none;font-weight:bold;display:inline-block;'>
+                ⬇ Vereinbarung herunterladen
+            </a>
+        </p>
+        <p style='font-size:0.85em;color:#666;'>Dieser Download-Link ist 24 Stunden gültig.</p>";
+        }
+
         return "
         <h2>Ihre DSGVO-Auftragsverarbeitungsvereinbarung</h2>
         <p>Sehr geehrte/r {$userData['vorname']} {$userData['name']},</p>
         <p>vielen Dank für Ihre Anfrage. Ihre DSGVO-konforme Auftragsverarbeitungsvereinbarung wurde erfolgreich erstellt und ist als PDF-Anhang beigefügt.</p>
+        {$downloadSection}
         <p><strong>Firmendaten:</strong><br>
         {$userData['firma']}<br>
         {$userData['ansprechpartner']}<br>
         {$userData['anschrift']}<br>
         {$userData['plz']} {$userData['ort']}</p>
         <p>Bei Fragen stehen wir Ihnen gerne zur Verfügung.</p>
-        <p>Mit freundlichen Grüßen<br>
-        Ihr DSGVO ADV Team</p>
+        <p>Mit freundlichen Grüßen</p>
+        <p>
+            ConRat WebSolutions GmbH<br>
+            Gartenstr. 4, 37281 Wanfried, Tel.: 05651 9529126<br>
+            Geschäftsführer: Matthias Steube<br>
+            Handelsregister: Amtsgericht Eschwege HRB 2809<br>
+            USt.-ID-Nr.: DE 214 630 397
+        </p>
         ";
     }
 

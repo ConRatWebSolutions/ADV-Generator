@@ -173,6 +173,13 @@ try {
         $updateStmt = $pdo->prepare($updateSql);
         $updateStmt->execute([$pdfPath, $id]);
 
+        // Download-Token generieren (24h gültig)
+        $downloadToken = bin2hex(random_bytes(32));
+        $tokenExpiry = date('Y-m-d H:i:s', time() + 86400);
+        $tokenSql = "INSERT INTO download_tokens (token, vereinbarung_id, expires_at) VALUES (?, ?, ?)";
+        $tokenStmt = $pdo->prepare($tokenSql);
+        $tokenStmt->execute([$downloadToken, $id, $tokenExpiry]);
+
         // Timeout zurücksetzen
         set_time_limit($oldTimeout);
     } catch (Throwable $pdfException) {
@@ -199,7 +206,12 @@ try {
         $emailConfig = new EmailConfig();
         $timestamp = date('Y-m-d H:i:s');
         file_put_contents($logDir . 'access.log', "[{$timestamp}] [POST] User: {$userEmail} | IP: {$ip} | EmailConfig-Instanz erstellt, rufe sendAgreementEmails auf..." . PHP_EOL, FILE_APPEND | LOCK_EX);
-        $pdfData = array_merge($input, ['agreement_id' => $agreementId, 'id' => $id, 'pdfPath' => $pdfPath]);
+        $pdfData = array_merge($input, [
+            'agreement_id' => $agreementId,
+            'id' => $id,
+            'pdfPath' => $pdfPath,
+            'download_token' => $downloadToken ?? '',
+        ]);
         $emailResult = $emailConfig->sendAgreementEmails($pdfData);
         $timestamp = date('Y-m-d H:i:s');
         file_put_contents($logDir . 'access.log', "[{$timestamp}] [POST] User: {$userEmail} | IP: {$ip} | sendAgreementEmails zurückgekehrt" . PHP_EOL, FILE_APPEND | LOCK_EX);
@@ -231,7 +243,7 @@ try {
         'message' => 'Vereinbarung erfolgreich erstellt und per E-Mail versendet!',
         'agreement_id' => $agreementId,
         'id' => $id,
-        'pdf_path' => $pdfPath
+        'download_token' => $downloadToken ?? '',
     ]);
 } catch (Exception $e) {
     $timestamp = date('Y-m-d H:i:s');

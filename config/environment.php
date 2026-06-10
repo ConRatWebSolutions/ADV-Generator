@@ -72,7 +72,8 @@ class EnvironmentConfig
             'mail_encryption' => '',
             'mail_from_address' => 'noreply@adv-somesolutions.ddev.site',
             'mail_from_name' => 'ADV-Somesolutions (DDEV)',
-            'admin_email' => 'info@conrat.de'
+            'admin_email' => 'info@conrat.de',
+            'base_url' => 'https://ADV-somesolutions.ddev.site'
         ];
     }
 
@@ -108,7 +109,8 @@ class EnvironmentConfig
             'mail_encryption' => getenv('MAIL_ENCRYPTION') ?: 'tls',
             'mail_from_address' => getenv('MAIL_FROM_ADDRESS') ?: 'noreply@adv-somesolutions.de',
             'mail_from_name' => getenv('MAIL_FROM_NAME') ?: 'ADV-Somesolutions',
-            'admin_email' => getenv('ADMIN_EMAIL') ?: 'mlehmann@conrat.de'
+            'admin_email' => getenv('ADMIN_EMAIL') ?: 'mlehmann@conrat.de',
+            'base_url' => getenv('APP_URL') ?: 'https://adv.somesolutions.de'
         ];
     }
 
