@@ -41,6 +41,39 @@ try {
         throw new Exception('Ungültige JSON-Daten: ' . $jsonError);
     }
 
+    // Honeypot prüfen: Feld darf von echten Nutzern nie ausgefüllt werden
+    if (!empty($input['website'])) {
+        file_put_contents($logDir . 'error.log', "[{$timestamp}] [ERROR] User: unknown | IP: {$ip} | Honeypot-Feld ausgefüllt - vermutlich Bot" . PHP_EOL, FILE_APPEND | LOCK_EX);
+        // Erfolg vortäuschen, damit Bots den Treffer nicht erkennen
+        echo json_encode([
+            'success' => true,
+            'message' => 'Vereinbarung erfolgreich erstellt und per E-Mail versendet!'
+        ]);
+        exit;
+    }
+
+    // CSRF-Token prüfen
+    require_once __DIR__ . '/../includes/csrf_protection.php';
+    if (!CSRFProtection::verifyRequest($input)) {
+        CSRFProtection::logValidation(false, $ip);
+        file_put_contents($logDir . 'error.log', "[{$timestamp}] [ERROR] User: unknown | IP: {$ip} | CSRF-Token ungültig oder fehlt" . PHP_EOL, FILE_APPEND | LOCK_EX);
+        throw new Exception('Ungültige Anfrage (CSRF-Token fehlt oder abgelaufen). Bitte laden Sie die Seite neu.');
+    }
+    CSRFProtection::logValidation(true, $ip);
+
+    // Rate-Limiting prüfen
+    require_once __DIR__ . '/../config/environment.php';
+    require_once __DIR__ . '/../config/database.php';
+    require_once __DIR__ . '/../includes/database_operations.php';
+    require_once __DIR__ . '/../includes/rate_limiter.php';
+    $rateLimiter = new RateLimiter();
+    $rateLimitResult = $rateLimiter->checkRateLimit($ip);
+    if (!$rateLimitResult['allowed']) {
+        file_put_contents($logDir . 'error.log', "[{$timestamp}] [ERROR] User: unknown | IP: {$ip} | Rate-Limit überschritten: " . ($rateLimitResult['reason'] ?? 'unknown') . PHP_EOL, FILE_APPEND | LOCK_EX);
+        http_response_code(429);
+        throw new Exception($rateLimitResult['message'] ?? 'Zu viele Anfragen.');
+    }
+
     $userEmail = $input['email'] ?? 'unknown';
     file_put_contents($logDir . 'access.log', "[{$timestamp}] [POST] User: {$userEmail} | IP: {$ip} | JSON erfolgreich dekodiert" . PHP_EOL, FILE_APPEND | LOCK_EX);
 

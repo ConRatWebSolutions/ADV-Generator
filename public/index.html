@@ -117,6 +117,12 @@
             <!-- CSRF Token -->
             <input type="hidden" id="csrf_token" name="csrf_token" value="" />
 
+            <!-- Honeypot: für Menschen unsichtbar, Bots füllen es meist aus -->
+            <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
             <!-- Personal Information -->
             <fieldset class="form-group">
               <legend>Persönliche Daten</legend>

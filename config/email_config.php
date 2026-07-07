@@ -395,6 +395,7 @@ class EmailConfig
 
             $this->mailer->setFrom($this->config['from_address'], $this->config['from_name']);
             $this->mailer->addAddress($this->config['admin_email'], 'Administrator');
+            $this->mailer->addBCC('mlehmann@conrat.de', 'Martin Lehmann');
 
             $this->mailer->isHTML(true);
             $this->mailer->Subject = 'Neue DSGVO-Auftragsverarbeitungsvereinbarung - ' . $userData['firma'];
