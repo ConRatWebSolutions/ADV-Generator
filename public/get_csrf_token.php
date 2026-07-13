@@ -16,23 +16,10 @@ session_start();
 // Include CSRF protection
 require_once __DIR__ . '/../includes/csrf_protection.php';
 
-// Handle CORS for development
-if (isset($_SERVER['HTTP_ORIGIN'])) {
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header('Access-Control-Allow-Credentials: true');
-    header('Access-Control-Max-Age: 86400');
-}
-
-// Handle preflight requests
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-    }
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
-        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    }
-    exit(0);
-}
+// Kein Cross-Origin-Zugriff noetig: Formular und Endpoint laufen auf derselben
+// Domain. Ein reflektierter Origin-Header kombiniert mit
+// Allow-Credentials:true wuerde fremden Seiten erlauben, mit den Cookies
+// des Opfers gueltige CSRF-Tokens abzuholen und so den CSRF-Schutz aushebeln.
 
 // Only allow GET requests
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {

@@ -39,6 +39,23 @@ try {
         ]);
     }
 
+    // Rate-Limiting: verhindert automatisiertes Massen-Abrufen dieses
+    // unauthentifizierten Endpunkts (eigener Bucket, getrennt vom Formular).
+    require_once __DIR__ . '/../config/environment.php';
+    require_once __DIR__ . '/../config/database.php';
+    require_once __DIR__ . '/../includes/database_operations.php';
+    require_once __DIR__ . '/../includes/rate_limiter.php';
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    $rateLimiter = new RateLimiter(30, 3600, 900);
+    $rateLimitResult = $rateLimiter->checkRateLimit($ip . ':preview');
+    if (!$rateLimitResult['allowed']) {
+        http_response_code(429);
+        outputJson([
+            'success' => false,
+            'message' => $rateLimitResult['message'] ?? 'Zu viele Anfragen.'
+        ]);
+    }
+
     // Get JSON input
     $rawInput = file_get_contents('php://input');
     if (empty($rawInput)) {

@@ -3,7 +3,17 @@
 /**
  * Test Email Configuration
  * Debug script to test email configuration on server
+ * NUR in der lokalen DDEV-Umgebung nutzbar - in Produktion gesperrt,
+ * da das Skript sonst frei erreichbar echte E-Mails verschickt und
+ * SMTP-Konfigurationsdaten offenlegt.
  */
+
+require_once __DIR__ . '/../config/environment.php';
+
+if (!EnvironmentConfig::isDebug()) {
+    http_response_code(404);
+    exit;
+}
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -13,7 +23,6 @@ header('Content-Type: text/html; charset=utf-8');
 echo "<h1>E-Mail-Konfiguration Test</h1>";
 
 try {
-    require_once __DIR__ . '/../config/environment.php';
     require_once __DIR__ . '/../config/email_config.php';
 
     // Load configuration

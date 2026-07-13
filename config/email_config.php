@@ -437,6 +437,16 @@ class EmailConfig
         $config = EnvironmentConfig::loadConfig();
         $baseUrl = rtrim($config['base_url'] ?? '', '/');
 
+        // Nutzereingaben escapen, bevor sie in den HTML-Mailbody eingebettet
+        // werden - verhindert HTML-/Link-Injection ueber das Formular.
+        $vorname = htmlspecialchars($userData['vorname'] ?? '', ENT_QUOTES, 'UTF-8');
+        $name = htmlspecialchars($userData['name'] ?? '', ENT_QUOTES, 'UTF-8');
+        $firma = htmlspecialchars($userData['firma'] ?? '', ENT_QUOTES, 'UTF-8');
+        $ansprechpartner = htmlspecialchars($userData['ansprechpartner'] ?? '', ENT_QUOTES, 'UTF-8');
+        $anschrift = htmlspecialchars($userData['anschrift'] ?? '', ENT_QUOTES, 'UTF-8');
+        $plz = htmlspecialchars($userData['plz'] ?? '', ENT_QUOTES, 'UTF-8');
+        $ort = htmlspecialchars($userData['ort'] ?? '', ENT_QUOTES, 'UTF-8');
+
         $downloadSection = '';
         if (!empty($userData['download_token'])) {
             $downloadUrl = $baseUrl . '/download_secure.php?token=' . urlencode($userData['download_token']);
@@ -451,14 +461,14 @@ class EmailConfig
 
         return "
         <h2>Ihre DSGVO-Auftragsverarbeitungsvereinbarung</h2>
-        <p>Sehr geehrte/r {$userData['vorname']} {$userData['name']},</p>
+        <p>Sehr geehrte/r {$vorname} {$name},</p>
         <p>vielen Dank für Ihre Anfrage. Ihre DSGVO-konforme Auftragsverarbeitungsvereinbarung wurde erfolgreich erstellt und ist als PDF-Anhang beigefügt.</p>
         {$downloadSection}
         <p><strong>Firmendaten:</strong><br>
-        {$userData['firma']}<br>
-        {$userData['ansprechpartner']}<br>
-        {$userData['anschrift']}<br>
-        {$userData['plz']} {$userData['ort']}</p>
+        {$firma}<br>
+        {$ansprechpartner}<br>
+        {$anschrift}<br>
+        {$plz} {$ort}</p>
         <p>Bei Fragen stehen wir Ihnen gerne zur Verfügung.</p>
         <p>Mit freundlichen Grüßen</p>
         <p>
@@ -479,15 +489,22 @@ class EmailConfig
      */
     private function generateAdminEmailBody(int $agreementId, array $userData): string
     {
+        $firma = htmlspecialchars($userData['firma'] ?? '', ENT_QUOTES, 'UTF-8');
+        $ansprechpartner = htmlspecialchars($userData['ansprechpartner'] ?? '', ENT_QUOTES, 'UTF-8');
+        $email = htmlspecialchars($userData['email'] ?? '', ENT_QUOTES, 'UTF-8');
+        $anschrift = htmlspecialchars($userData['anschrift'] ?? '', ENT_QUOTES, 'UTF-8');
+        $plz = htmlspecialchars($userData['plz'] ?? '', ENT_QUOTES, 'UTF-8');
+        $ort = htmlspecialchars($userData['ort'] ?? '', ENT_QUOTES, 'UTF-8');
+
         return "
         <h2>Neue DSGVO-Auftragsverarbeitungsvereinbarung</h2>
         <p>Eine neue Auftragsverarbeitungsvereinbarung wurde erstellt:</p>
         <p><strong>Vereinbarungs-ID:</strong> {$agreementId}</p>
         <p><strong>Firmendaten:</strong><br>
-        Firma: {$userData['firma']}<br>
-        Ansprechpartner: {$userData['ansprechpartner']}<br>
-        E-Mail: {$userData['email']}<br>
-        Adresse: {$userData['anschrift']}, {$userData['plz']} {$userData['ort']}</p>
+        Firma: {$firma}<br>
+        Ansprechpartner: {$ansprechpartner}<br>
+        E-Mail: {$email}<br>
+        Adresse: {$anschrift}, {$plz} {$ort}</p>
         <p>Die Vereinbarung ist als PDF-Anhang beigefügt.</p>
         ";
     }

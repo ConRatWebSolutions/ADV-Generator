@@ -4,7 +4,22 @@ declare(strict_types=1);
 // Alle bisherige Ausgabe verwerfen damit keine Warnings das PDF korrumpieren
 ob_start();
 
+require_once __DIR__ . '/../config/environment.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/database_operations.php';
+require_once __DIR__ . '/../includes/rate_limiter.php';
 require_once __DIR__ . '/../config/pdf_config.php';
+
+// Rate-Limiting: verhindert Ressourcen-Abuse durch wiederholte,
+// unauthentifizierte PDF-Generierung (eigener Bucket, getrennt vom Formular).
+$ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+$rateLimiter = new RateLimiter(10, 3600, 900);
+$rateLimitResult = $rateLimiter->checkRateLimit($ip . ':muster');
+if (!$rateLimitResult['allowed']) {
+    ob_end_clean();
+    http_response_code(429);
+    exit($rateLimitResult['message'] ?? 'Zu viele Anfragen.');
+}
 
 $musterData = [
     'vorname'         => 'Max',
