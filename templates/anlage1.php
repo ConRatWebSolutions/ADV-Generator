@@ -122,7 +122,8 @@ class Anlage1
 <ul>
     <li><strong>Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO):</strong> Die Verarbeitung ist erforderlich zur Erbringung der vertraglich geschuldeten KI-Dienste.</li>
     <li><strong>Einwilligung (Art. 6 Abs. 1 lit. a DSGVO):</strong> Vor der erstmaligen Nutzung jedes KI-Dienstes wird über einen Einwilligungsdialog die ausdrückliche Zustimmung eingeholt. Die Einwilligung ist jederzeit mit Wirkung für die Zukunft widerrufbar.</li>
-    <li><strong>Einwilligung bei Drittlandtransfer (Art. 49 Abs. 1 lit. a DSGVO):</strong> Soweit Daten außerhalb der EU verarbeitet werden (die in Abschnitt 4 als global geführten Sprachmodelle, die Bildmodelle Nano Banana 2 und Nano Banana Pro, der Musik-Generator sowie der RechercheMeister), erfolgt dies auf Grundlage der ausdrücklichen Einwilligung nach vorheriger Information über die damit verbundenen Risiken. Ergänzend bestehen für Microsoft und Google EU-Standardvertragsklauseln im Rahmen der jeweiligen Anbieter-DPA.</li>
+    <li><strong>Drittlandtransfer, geeignete Garantien (Art. 46 Abs. 2 lit. c DSGVO):</strong> Soweit Daten außerhalb der EU verarbeitet werden (die in Abschnitt 4 als global geführten Sprachmodelle, die Bildmodelle Nano Banana 2 und Nano Banana Pro, der Musik-Generator sowie der RechercheMeister), stützt sich die Übermittlung auf die EU-Standardvertragsklauseln im Rahmen der jeweiligen Anbieter-DPA. Diese Garantien sind die tragende Grundlage; Art. 49 Abs. 1 lit. a DSGVO ist eine Ausnahmevorschrift für gelegentliche Übermittlungen und trägt eine planmäßig wiederkehrende Verarbeitung nicht.</li>
+    <li><strong>Einwilligung in die globale Verarbeitung (Art. 6 Abs. 1 lit. a DSGVO):</strong> Zusätzlich wird vor der ersten Nutzung eines global verarbeitenden Dienstes eine ausdrückliche Einwilligung nach vorheriger Information über die damit verbundenen Risiken eingeholt. Sie ist Rechtsgrundlage der Verarbeitung und zugleich das Instrument, mit dem der Nutzer zwischen EU-gebundener und globaler Verarbeitung wählt.</li>
 </ul>
 
 <p><strong>4. KI-Chat: Modelle und Verarbeitungsorte</strong></p>
@@ -175,7 +176,7 @@ class Anlage1
     <li><strong>KI-Modell:</strong> GPT-5 Mini über den Azure AI Agent Service von Microsoft.</li>
     <li><strong>Verarbeitungsregion:</strong> Sweden Central (Gävle, Schweden). Diese Region weicht bewusst von der des übrigen Azure-Betriebs ab: der KI-Chat nutzt GPT-5 Mini in Germany West Central (Frankfurt), der Dokumenten-Chat eine eigene Bereitstellung in Schweden. Beide Regionen liegen innerhalb der EU.</li>
     <li><strong>Dokumentenspeicherung:</strong> Hochgeladene Dokumente werden auf dem eigenen Server in Deutschland gespeichert.</li>
-    <li><strong>Zugriffskontrolle:</strong> Jeder Nutzer sieht nur seine eigenen Dokumente. Download-URLs sind signiert und zeitlich begrenzt (1 Stunde Gültigkeit).</li>
+    <li><strong>Zugriffskontrolle:</strong> Jeder Nutzer sieht nur seine eigenen Dokumente. Download-Adressen sind signiert; Anfragen ohne gültige Signatur weist der Download-Endpunkt ab.</li>
     <li><strong>Drittlandtransfer:</strong> Keiner. Sämtliche Verarbeitung findet innerhalb der EU statt.</li>
 </ul>
 
@@ -229,7 +230,7 @@ class Anlage1
         <th>AVV/DPA</th>
     </tr>
     <tr><td>Microsoft</td><td>KI-Chat, Dokumenten-Chat, Bildgenerierung, Wissensspeicher, Spracheingabe und Vorlesen, Postfach- und Kalenderzugriff bei Microsoft 365</td><td>Germany West Central/Frankfurt (DE), Sweden Central/Gävle (SE), global</td><td>Microsoft Products and Services DPA</td></tr>
-    <tr><td>Google</td><td>KI-Chat (Gemini), Bildgenerierung, Musikgenerierung (Lyria 3), Postfachzugriff bei Gmail</td><td>St. Ghislain (BE), global (Vertex Global-Endpunkt, Lyria und AI Studio)</td><td>Google Cloud Data Processing Addendum</td></tr>
+    <tr><td>Google</td><td>KI-Chat (Gemini), Bildgenerierung, Musikgenerierung (Lyria 3), Postfachzugriff bei Gmail</td><td>St. Ghislain (BE), global (Vertex Global-Endpunkt, Lyria und AI Studio)</td><td>Google Cloud Data Processing Addendum mit EU-Standardvertragsklauseln für Vertex AI. Für Google AI Studio ist die einschlägige Vertragsgrundlage noch zu belegen.</td></tr>
     <tr><td>Perplexity AI</td><td>RechercheMeister (Webrecherche)</td><td>USA (Zero Data Retention)</td><td>Perplexity DPA mit EU-SCCs (Modul 2)</td></tr>
     <tr><td>IONOS SE</td><td>Hosting der Plattform und Datenbank</td><td>Deutschland</td><td>IONOS AVV</td></tr>
 </table>
@@ -239,7 +240,7 @@ class Anlage1
 <p>Eine Übermittlung außerhalb der EU erfolgt nur, wenn der Nutzer sich aktiv dafür entscheidet. Betroffen sind:</p>
 <ul>
     <li><strong>Die sieben in Abschnitt 4 als global geführten Sprachmodelle</strong> (Claude Opus 4.8, Claude Sonnet 4.6, Claude Haiku 4.5, Llama 4 Maverick, Gemini 3.5 Flash, Gemini 3.6 Flash, Gemini 3.5 Flash-Lite). Garantien: EU-Standardvertragsklauseln im Rahmen der Microsoft- bzw. Google-DPA.</li>
-    <li><strong>Die Bildmodelle Nano Banana 2 und Nano Banana Pro:</strong> Google AI Studio, globale Verarbeitung. Garantien: Google Cloud DPA mit SCCs. Es werden nur Text-Eingaben und ggf. Referenzbilder übermittelt.</li>
+    <li><strong>Die Bildmodelle Nano Banana 2 und Nano Banana Pro:</strong> Google AI Studio, globale Verarbeitung. Es werden nur Text-Eingaben und ggf. Referenzbilder übermittelt. Diese beiden Modelle werden nicht über Vertex AI, sondern über Google AI Studio bereitgestellt; welches Vertragswerk die Übermittlung deckt, wird derzeit geprüft. Solange der Nachweis aussteht, steht für eine EU-gebundene Bildgenerierung das Modell Nano Banana (EU) zur Verfügung.</li>
     <li><strong>Musik-Generator (Lyria 3):</strong> Google Vertex AI über den globalen Endpunkt, eine EU-Region ist derzeit nicht verfügbar. Garantien: Google Cloud DPA mit SCCs. Übermittelt werden die Textbeschreibung und, bei Gesang, der eingegebene Liedtext.</li>
     <li><strong>RechercheMeister (Perplexity AI):</strong> USA. Garantien: DPA mit EU-SCCs (Modul 2), Zero Data Retention, SOC 2 Type II.</li>
 </ul>

@@ -12,13 +12,13 @@ declare(strict_types=1);
 final class AvvVersion
 {
     /** Fortlaufende Inhaltsversion, Format JJJJ-MM-TT.N */
-    public const VERSION = '2026-08-24.1';
+    public const VERSION = '2026-08-24.2';
 
     /** Datum der letzten inhaltlichen Aenderung am Vertragstext */
     public const CONTENT_DATE = '24.08.2026';
 
     /** Abgleichdokument, auf dem dieser Textstand beruht */
-    public const BASIS = 'AVV-Anlage-ConRat-AI-Abgleich-2026-08-22';
+    public const BASIS = 'AVV-Anlage-ConRat-AI-Abgleich-2026-08-24, zweiter Durchgang';
 
     /** Freigabestand: 'entwurf' oder 'freigegeben' */
     public const STATUS = 'entwurf';
