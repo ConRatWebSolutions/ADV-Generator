@@ -10,6 +10,10 @@ class Anlage1
    
 
 <p>
+    <strong>Vorrang der Produktblöcke:</strong> Die Blöcke dieser Anlage gelten je Produkt. Nutzt der Auftraggeber die KI-Plattform ConRat AI, gehen die Angaben des Blocks ConRat AI zu Verarbeitungsorten, Auftragsverarbeitern und Drittlandtransfers den allgemeinen Aussagen der übrigen Blöcke vor. Für alle anderen Leistungen bleibt es bei der Verarbeitung in Deutschland, einem Mitgliedsstaat der Europäischen Union oder einem anderen Vertragsstaat des Abkommens über den Europäischen Wirtschaftsraum.
+</p>
+
+<p>
     <h2>Für Kunden die unser Webhosting nutzen:</h2>
 </p>
 <p>
@@ -92,13 +96,14 @@ class Anlage1
     <li><strong>Content-Autopilot und Veröffentlichungskanäle:</strong> Erstellen und, auf Weisung des Auftraggebers, Veröffentlichen von Beiträgen über LinkedIn, Facebook, Instagram, X, WordPress, TYPO3, Telegram oder eine eigene Schnittstelle.</li>
     <li><strong>Spracheingabe und Vorlesen</strong> (Sprache zu Text und Text zu Sprache).</li>
     <li><strong>Website-Erfassung</strong> und Lesen einzelner URLs für Recherche und Wissensspeicher.</li>
+    <li><strong>Musik-Generator:</strong> Erzeugen von Instrumental- und Gesangsstücken aus einer Textbeschreibung.</li>
 </ul>
 
 <p><strong>2. Kategorien verarbeiteter Daten</strong></p>
 <p>Bei der Nutzung der KI-Dienste werden folgende Datenkategorien verarbeitet:</p>
 <ul>
     <li><strong>Bestandsdaten:</strong> E-Mail-Adresse, Benutzername, Kontoinformationen (gespeichert auf eigenem Server in Deutschland).</li>
-    <li><strong>Nutzungsdaten:</strong> Zeitpunkt der Nutzung, gewähltes KI-Modell, Credit-Verbrauch, Einwilligungsstatus je Dienst inkl. Zeitstempel und Version.</li>
+    <li><strong>Nutzungsdaten:</strong> Zeitpunkt der Nutzung, gewähltes KI-Modell, Verbrauch im Rahmen der Fair-Use-Grenzen, Einwilligungsstatus je Dienst inkl. Zeitstempel und Version.</li>
     <li><strong>Inhaltsdaten (KI-Chat):</strong> Text-Eingaben (Prompts) und KI-generierte Antworten. Gesprächsverläufe werden ausschließlich in der eigenen Datenbank in Deutschland gespeichert. An die KI-Anbieter werden nur die für die jeweilige Anfrage erforderlichen Prompts per zustandsloser API-Schnittstelle übermittelt. Es werden keine dauerhaften Sitzungen bei den KI-Anbietern erstellt.</li>
     <li><strong>Inhaltsdaten (Bildgenerierung):</strong> Text-Prompts und ggf. Referenzbilder. Generierte Bilder werden ausschließlich auf dem eigenen Server in Deutschland gespeichert. Es werden keine personenbezogenen Metadaten (Name, E-Mail o. Ä.) an die KI-Anbieter übermittelt.</li>
     <li><strong>Inhaltsdaten (Dokumenten-Chat):</strong> Hochgeladene PDF-Dokumente und darauf bezogene Fragen. Die Auswertung erfolgt in der Azure-Region Sweden Central (Gävle, Schweden), die Speicherung der Dokumente auf dem eigenen Server in Deutschland. Ein Drittlandtransfer findet nicht statt.</li>
@@ -117,7 +122,7 @@ class Anlage1
 <ul>
     <li><strong>Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO):</strong> Die Verarbeitung ist erforderlich zur Erbringung der vertraglich geschuldeten KI-Dienste.</li>
     <li><strong>Einwilligung (Art. 6 Abs. 1 lit. a DSGVO):</strong> Vor der erstmaligen Nutzung jedes KI-Dienstes wird über einen Einwilligungsdialog die ausdrückliche Zustimmung eingeholt. Die Einwilligung ist jederzeit mit Wirkung für die Zukunft widerrufbar.</li>
-    <li><strong>Einwilligung bei Drittlandtransfer (Art. 49 Abs. 1 lit. a DSGVO):</strong> Soweit Daten außerhalb der EU verarbeitet werden (die in Abschnitt 4 als global geführten Sprachmodelle, die Bildmodelle Nano Banana 2 und Nano Banana Pro sowie der RechercheMeister), erfolgt dies auf Grundlage der ausdrücklichen Einwilligung nach vorheriger Information über die damit verbundenen Risiken. Ergänzend bestehen für Microsoft und Google EU-Standardvertragsklauseln im Rahmen der jeweiligen Anbieter-DPA.</li>
+    <li><strong>Einwilligung bei Drittlandtransfer (Art. 49 Abs. 1 lit. a DSGVO):</strong> Soweit Daten außerhalb der EU verarbeitet werden (die in Abschnitt 4 als global geführten Sprachmodelle, die Bildmodelle Nano Banana 2 und Nano Banana Pro, der Musik-Generator sowie der RechercheMeister), erfolgt dies auf Grundlage der ausdrücklichen Einwilligung nach vorheriger Information über die damit verbundenen Risiken. Ergänzend bestehen für Microsoft und Google EU-Standardvertragsklauseln im Rahmen der jeweiligen Anbieter-DPA.</li>
 </ul>
 
 <p><strong>4. KI-Chat: Modelle und Verarbeitungsorte</strong></p>
@@ -148,7 +153,7 @@ class Anlage1
 <p><em>* Bei den als global geführten Modellen liegt die Azure-Ressource zwar in der EU, die Abarbeitung erfolgt jedoch über eine Kapazität ohne Ortsbindung (GlobalStandard); eine Verarbeitung außerhalb der EU ist damit möglich. Abgesichert ist der Transfer über die EU-Standardvertragsklauseln der jeweiligen Anbieter-DPA. Nutzer können alternativ eines der 7 Modelle mit EU-Garantie verwenden.</em></p>
 
 <p><strong>5. KI-Bildgenerierung: Modelle und Verarbeitungsorte</strong></p>
-<p>Drei der fünf Modelle verarbeiten garantiert in der EU, zwei verarbeiten global. Übermittelt werden Text-Eingaben und, sofern der Nutzer eines beifügt, Referenzbilder. Personenbezogene Metadaten wie Name oder E-Mail-Adresse werden nicht mitgesendet. Erzeugte Bilder werden ausschließlich auf dem eigenen Server in Deutschland gespeichert.</p>
+<p>Der Bild-Generator bietet sechs Modelle. Vier verarbeiten garantiert in der EU, zwei verarbeiten global. Übermittelt werden Text-Eingaben und, sofern der Nutzer eines beifügt, Referenzbilder. Personenbezogene Metadaten wie Name oder E-Mail-Adresse werden nicht mitgesendet. Erzeugte Bilder werden ausschließlich auf dem eigenen Server in Deutschland gespeichert.</p>
 <table border="1" cellpadding="3" cellspacing="0" style="font-size:9pt; width:100%;">
     <tr>
         <th>Modell</th>
@@ -159,10 +164,11 @@ class Anlage1
     <tr><td>GPT Image 1.5</td><td>Microsoft Azure</td><td>Gävle, Schweden</td><td>EU garantiert</td></tr>
     <tr><td>GPT Image 2</td><td>Microsoft Azure</td><td>Gävle, Schweden</td><td>EU garantiert</td></tr>
     <tr><td>FLUX.2 Pro</td><td>Microsoft Azure (Serverless)</td><td>Gävle, Schweden</td><td>EU garantiert</td></tr>
+    <tr><td>Nano Banana (EU)</td><td>Google Vertex AI</td><td>St. Ghislain, Belgien</td><td>EU garantiert</td></tr>
     <tr><td>Nano Banana 2</td><td>Google AI Studio</td><td>Global-Endpunkt</td><td>Global*</td></tr>
     <tr><td>Nano Banana Pro</td><td>Google AI Studio</td><td>Global-Endpunkt</td><td>Global*</td></tr>
 </table>
-<p><em>* Beide Nano-Banana-Modelle laufen über die Google-AI-Studio-Schnittstelle ohne EU-Regionsbindung. Vor der ersten Nutzung wird ein Einwilligungsdialog mit Hinweis auf den jeweiligen Verarbeitungsort angezeigt.</em></p>
+<p><em>* Von den drei Nano-Banana-Varianten läuft eine über Google Vertex AI in der EU-Region Belgien, die beiden anderen sind dort nicht verfügbar und laufen über die Google-AI-Studio-Schnittstelle ohne EU-Regionsbindung. Vor der ersten Nutzung wird ein Einwilligungsdialog mit Hinweis auf den jeweiligen Verarbeitungsort angezeigt; für die globale Verarbeitung ist eine eigene Zustimmung erforderlich. Wählt der Nutzer sie nicht, wird das EU-Modell verwendet.</em></p>
 
 <p><strong>6. Dokumenten-Chat (PDF-Analyse)</strong></p>
 <ul>
@@ -190,8 +196,17 @@ class Anlage1
 
 <p><strong>6c. Spracheingabe, Vorlesen und Website-Erfassung</strong></p>
 <ul>
-    <li><strong>Spracheingabe und Vorlesen:</strong> Sprachaufnahmen und vorzulesende Texte werden an Microsoft Azure AI Speech in einem Rechenzentrum innerhalb der EU übermittelt, nur für die unmittelbare Umwandlung verarbeitet und nicht dauerhaft gespeichert.</li>
+    <li><strong>Spracheingabe und Vorlesen:</strong> Sprachaufnahmen und vorzulesende Texte werden an Microsoft Azure AI Speech in der Region Sweden Central (Gävle, Schweden) übermittelt, nur für die unmittelbare Umwandlung verarbeitet und nicht dauerhaft gespeichert.</li>
     <li><strong>Website-Erfassung:</strong> zum Lesen einzelner URLs und zum Erfassen ganzer Webseiten für den Wissensspeicher betreibt die ConRat WebSolutions GmbH einen eigenen Crawler auf eigener Infrastruktur (Crawl4AI auf einem selbst betriebenen Server bei der IONOS SE in Deutschland). Die aufzurufende Adresse verlässt diese eigene Umgebung nicht; abgerufen wird ausschließlich die vom Auftraggeber benannte fremde Webseite selbst. Der Zugriff auf die Crawler-Instanz ist tokengeschützt und von außen nicht erreichbar. An dieser Verarbeitung ist kein Auftragsverarbeiter beteiligt.</li>
+</ul>
+
+<p><strong>6d. Musik-Generator</strong></p>
+<ul>
+    <li><strong>KI-Modell:</strong> Google Lyria 3 in zwei Stufen (Clip bis 30 Sekunden, Fassung bis drei Minuten).</li>
+    <li><strong>Plattform und Verarbeitungsort:</strong> Google Vertex AI über den globalen Endpunkt. Eine EU-Region ist für Lyria 3 derzeit nicht verfügbar, das Modell befindet sich bei Google im Preview-Stand. Sobald ein EU-Endpunkt bereitsteht, wird umgestellt.</li>
+    <li><strong>Übermittelte Daten:</strong> die Textbeschreibung des Stücks samt Genre, Stimmung und Tempo sowie, wenn der Nutzer Gesang wählt, der eingegebene Liedtext. Bestandsdaten werden nicht übermittelt.</li>
+    <li><strong>Speicherung:</strong> die erzeugte Audiodatei wird ausschließlich auf dem eigenen Server in Deutschland gespeichert.</li>
+    <li><strong>Drittlandtransfer:</strong> ja, siehe Abschnitt 9. Vor der Nutzung wird auf die Verarbeitung außerhalb der EU hingewiesen.</li>
 </ul>
 
 <p><strong>7. RechercheMeister (KI-Webrecherche)</strong></p>
@@ -214,7 +229,7 @@ class Anlage1
         <th>AVV/DPA</th>
     </tr>
     <tr><td>Microsoft</td><td>KI-Chat, Dokumenten-Chat, Bildgenerierung, Wissensspeicher, Spracheingabe und Vorlesen, Postfach- und Kalenderzugriff bei Microsoft 365</td><td>Germany West Central/Frankfurt (DE), Sweden Central/Gävle (SE), global</td><td>Microsoft Products and Services DPA</td></tr>
-    <tr><td>Google</td><td>KI-Chat (Gemini), Bildgenerierung, Postfachzugriff bei Gmail</td><td>St. Ghislain (BE), global (Vertex Global-Endpunkt und AI Studio)</td><td>Google Cloud Data Processing Addendum</td></tr>
+    <tr><td>Google</td><td>KI-Chat (Gemini), Bildgenerierung, Musikgenerierung (Lyria 3), Postfachzugriff bei Gmail</td><td>St. Ghislain (BE), global (Vertex Global-Endpunkt, Lyria und AI Studio)</td><td>Google Cloud Data Processing Addendum</td></tr>
     <tr><td>Perplexity AI</td><td>RechercheMeister (Webrecherche)</td><td>USA (Zero Data Retention)</td><td>Perplexity DPA mit EU-SCCs (Modul 2)</td></tr>
     <tr><td>IONOS SE</td><td>Hosting der Plattform und Datenbank</td><td>Deutschland</td><td>IONOS AVV</td></tr>
 </table>
@@ -225,6 +240,7 @@ class Anlage1
 <ul>
     <li><strong>Die sieben in Abschnitt 4 als global geführten Sprachmodelle</strong> (Claude Opus 4.8, Claude Sonnet 4.6, Claude Haiku 4.5, Llama 4 Maverick, Gemini 3.5 Flash, Gemini 3.6 Flash, Gemini 3.5 Flash-Lite). Garantien: EU-Standardvertragsklauseln im Rahmen der Microsoft- bzw. Google-DPA.</li>
     <li><strong>Die Bildmodelle Nano Banana 2 und Nano Banana Pro:</strong> Google AI Studio, globale Verarbeitung. Garantien: Google Cloud DPA mit SCCs. Es werden nur Text-Eingaben und ggf. Referenzbilder übermittelt.</li>
+    <li><strong>Musik-Generator (Lyria 3):</strong> Google Vertex AI über den globalen Endpunkt, eine EU-Region ist derzeit nicht verfügbar. Garantien: Google Cloud DPA mit SCCs. Übermittelt werden die Textbeschreibung und, bei Gesang, der eingegebene Liedtext.</li>
     <li><strong>RechercheMeister (Perplexity AI):</strong> USA. Garantien: DPA mit EU-SCCs (Modul 2), Zero Data Retention, SOC 2 Type II.</li>
 </ul>
 <p>
@@ -241,7 +257,7 @@ class Anlage1
     <li><strong>Verschlüsselte Zugangsdaten:</strong> OAuth-Token und IMAP-Zugangsdaten werden ausschließlich verschlüsselt gespeichert (AES-256-GCM) und nie im Klartext abgelegt.</li>
     <li><strong>Zustandslose Architektur:</strong> Keine dauerhaften Sitzungen oder Threads bei den KI-Anbietern.</li>
     <li><strong>Eigene Datenhaltung:</strong> Gesprächsverläufe, Bilder, Dokumente und Assistenten-Ergebnisse werden auf dem eigenen IONOS-Server in Deutschland gespeichert.</li>
-    <li><strong>Zugriffskontrolle:</strong> Strikte Mandantentrennung – jeder Nutzer sieht nur seine eigenen Daten.</li>
+    <li><strong>Zugriffskontrolle:</strong> Strikte Mandantentrennung, jeder Nutzer sieht nur seine eigenen Daten.</li>
     <li><strong>Kein KI-Training:</strong> Kein KI-Anbieter verwendet Eingaben zum Trainieren von Modellen (vertraglich garantiert).</li>
     <li><strong>Abuse Monitoring:</strong> Microsoft Azure prüft Anfragen automatisiert auf schädliche Inhalte ohne dauerhafte Speicherung der Nutzerdaten.</li>
 </ul>
@@ -255,7 +271,7 @@ class Anlage1
 <ul>
     <li><strong>Gesprächsverläufe und generierte Inhalte:</strong> bis zur Löschung durch den Nutzer oder bis zur Kontolöschung.</li>
     <li><strong>Hochgeladene Dokumente:</strong> bis zur Löschung durch den Nutzer, im Wissensspeicher dann auch beim Vektorspeicher.</li>
-    <li><strong>Ergebnisse von Assistentenläufen:</strong> bis zur Kontolöschung. Sie können Inhalte aus Nachrichten und Dokumenten enthalten.</li>
+    <li><strong>Ergebnisse von Assistentenläufen:</strong> bis zur Kontolöschung. Sie können Inhalte aus Nachrichten und Dokumenten enthalten und unterliegen derzeit keiner eigenen Frist.</li>
     <li><strong>Vorbereitete Weiterleitungen, Terminvorschläge und Beitragsentwürfe:</strong> bis zur Bestätigung oder Verwerfung durch den Nutzer, danach bis zur Kontolöschung.</li>
     <li><strong>Zugangsdaten verbundener Konten:</strong> bis zum Trennen der Verknüpfung oder zur Kontolöschung.</li>
     <li><strong>Daten bei den KI-Anbietern:</strong> keine dauerhafte Speicherung, da die Schnittstellen zustandslos angesprochen werden und Zero-Data-Retention vereinbart ist.</li>

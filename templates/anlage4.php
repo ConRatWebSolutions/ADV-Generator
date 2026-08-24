@@ -29,6 +29,7 @@ class Anlage4
 </p>
 <p>
     Datenträger in den Geschäftsräumen mit personenbezogenen Daten werden entsprechend dem Stand der Technik verschlüsselt. Der Zugang zu Server-Systemen sowie die Datenübertragung zwischen einzelnen Servern erfolgt über verschlüsselte Verbindungen. Die Software ist durch den Kunden ausschließlich über verschlüsselte Internetverbindungen (https) nutzbar.&nbsp;
+    Zugangsdaten, die der Kunde für verbundene Postfächer und Kalender hinterlegt (OAuth-Token sowie Benutzername und Passwort bei IMAP), werden ausschließlich verschlüsselt gespeichert (AES-256-GCM) und nie im Klartext abgelegt.
 </p>
 <p>
     3. Gewährleistung der Vertraulichkeit Zutrittskontrolle

@@ -38,8 +38,8 @@ class Anlage3
 </p>
 <p>
     - Google (Google Cloud / Vertex AI und AI Studio)<br>
-    f&uuml;r die Sprachmodelle der Gemini-Reihe, die Bildmodelle sowie den Postfachzugriff bei Gmail<br>
-    Regionen: St. Ghislain (BE) sowie global (Vertex Global-Endpunkt und AI Studio)<br>
+    f&uuml;r die Sprachmodelle der Gemini-Reihe, die Bildmodelle, den Musik-Generator (Lyria 3) sowie den Postfachzugriff bei Gmail<br>
+    Regionen: St. Ghislain (BE) sowie global (Vertex Global-Endpunkt, Lyria und AI Studio)<br>
     (Grundlage: Google Cloud Data Processing Addendum mit EU-Standardvertragsklauseln).
 </p>
 <p>
@@ -48,12 +48,12 @@ class Anlage3
     USA, Zero Data Retention<br>
     (Grundlage: Perplexity DPA mit EU-Standardvertragsklauseln, Modul 2).
 </p>
-<p>
-    <em>Hinweis: F&uuml;r die Website-Erfassung (Lesen einzelner URLs und Erfassen ganzer Webseiten f&uuml;r den Wissensspeicher) ist kein Unterauftragnehmer eingetragen. Sie l&auml;uft auf einem selbst betriebenen Server in Deutschland ohne Beteiligung eines Dritten; siehe Anlage 1, Abschnitt 6c.</em>
-</p>
  <p>
     - consentmanager GmbH, Eppendorfer Weg 183, 20253 Hamburg<br>
     für den Consent-Banner (Cookie-Banner).
+</p>
+<p>
+    <em>Hinweis: F&uuml;r die Website-Erfassung (Lesen einzelner URLs und Erfassen ganzer Webseiten f&uuml;r den Wissensspeicher) ist kein Unterauftragnehmer eingetragen. Sie l&auml;uft auf einem selbst betriebenen Server in Deutschland ohne Beteiligung eines Dritten; siehe Anlage 1, Abschnitt 6c.</em>
 </p>
  
 <p>
