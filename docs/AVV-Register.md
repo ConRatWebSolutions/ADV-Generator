@@ -19,7 +19,7 @@ einzige Stelle, an der der Umsetzungsstand gefuehrt wird.
 
 | | |
 |---|---|
-| Textstand | 2026-08-24.4 |
+| Textstand | 2026-08-24.5 |
 | Basis | AVV-Anlage-ConRat-AI-Abgleich-2026-08-24, zweiter Durchgang |
 | Status | entwurf, nicht freigegeben |
 | Live ausgeliefert | Textstand vor 2026-08-24.1, Deploy ausstehend |
@@ -52,7 +52,7 @@ Nano Banana 2 und Nano Banana Pro.
 | 08 | Formalien im Generator | erledigt in 2026-08-24.1 | Vertragskopf, Anlage 2 |
 | 09 | Musik-Generator ohne eigene Zustimmung | erledigt, Produkt und Vertrag | Anlage 1, Abschnitt 6d und 9 |
 | 10 | Firmierung und TOM der drei neuen Eintraege | erledigt in 2026-08-24.3 | Anlage 3 |
-| 11 | Verweis auf some-solutions.de | offen, Entscheidung im Haus | Anlage 3, Vertrag § 7 Abs. 2 |
+| 11 | Verweis auf some-solutions.de | **offen, Seite ist nicht erreichbar** | Anlage 3, Vertrag § 7 Abs. 2 |
 
 ## Zusaetzlich erledigt in 2026-08-24.2
 
@@ -66,12 +66,31 @@ Nano Banana 2 und Nano Banana Pro.
 
 ## Blocker vor der naechsten Auslieferung
 
-1. **Google AI Studio.** Solange die Vertragsgrundlage nicht belegt ist, ist der
-   Einsatz von Nano Banana 2 und Nano Banana Pro nicht abgedeckt. Der Vertrag
-   behauptet das nicht mehr, das Produkt bietet die Modelle aber weiter an.
-   Aussicht: die Chatseite loest denselben Fall ueber `vertexRegion: 'global'`.
-   Laesst sich der Bildpfad ebenso umstellen, greift das Google Cloud DPA und
-   der Punkt entfaellt.
+**Verweis auf die Verarbeiterliste (Frage 11).** Anlage 3 und § 7 Abs. 2
+verweisen auf https://www.some-solutions.de/dsgvo-verarbeiter. Geprueft am
+24.08.2026: die Adresse liefert HTTP 404, auch die Startseite der Domain. Das
+Zertifikat ist selbstsigniert und auf webslave.ispgateway.de ausgestellt, jeder
+Browser warnt. Der Vertrag verweist die Kunden damit auf eine Seite, die es
+nicht gibt. Das beruehrt das Widerspruchsrecht nach Art. 28 Abs. 2 DSGVO: wer
+die Liste nicht einsehen kann, kann einer Aenderung nicht binnen zwei Wochen
+widersprechen. Entweder die Seite wird bereitgestellt oder der Verweis zieht
+auf eine erreichbare ConRat-Adresse um.
+
+## Erledigt in 2026-08-24.5
+
+**Google AI Studio entfaellt.** Nano Banana 2 und Nano Banana Pro laufen jetzt
+ueber den Vertex-Global-Endpunkt statt ueber Google AI Studio; der Testaufruf
+belegt HTTP 200 fuer beide Modelle unter locations/global, 404 in
+europe-west1 und europe-west4. Damit gilt fuer alle Google-Dienste einheitlich
+das Google Cloud Data Processing Addendum mit Standardvertragsklauseln. Der
+Einwand des Datenschutzbeauftragten zu AI Studio ist gegenstandslos. Abschnitt
+5, 8 und 9 der Anlage 1 sowie der Google-Eintrag in Anlage 3 sind angepasst,
+AI Studio kommt im Vertrag nicht mehr vor.
+
+Nebeneffekt: der Schluessel NEXT_PUBLIC_GOOGLE_GEMINI_API_KEY wird nirgends
+mehr gelesen und ist aus CI und Deploy-Skripten entfernt. Die Zusage in
+Abschnitt 10, dass API-Schluessel ausschliesslich serverseitig verarbeitet
+werden, ist damit nicht mehr nur faktisch, sondern strukturell abgesichert.
 
 ## Erledigt in 2026-08-24.4
 

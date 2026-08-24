@@ -166,10 +166,10 @@ class Anlage1
     <tr><td>GPT Image 2</td><td>Microsoft Azure</td><td>Gävle, Schweden</td><td>EU garantiert</td></tr>
     <tr><td>FLUX.2 Pro</td><td>Microsoft Azure (Serverless)</td><td>Gävle, Schweden</td><td>EU garantiert</td></tr>
     <tr><td>Nano Banana (EU)</td><td>Google Vertex AI</td><td>St. Ghislain, Belgien</td><td>EU garantiert</td></tr>
-    <tr><td>Nano Banana 2</td><td>Google AI Studio</td><td>Global-Endpunkt</td><td>Global*</td></tr>
-    <tr><td>Nano Banana Pro</td><td>Google AI Studio</td><td>Global-Endpunkt</td><td>Global*</td></tr>
+    <tr><td>Nano Banana 2</td><td>Google Vertex AI</td><td>Global-Endpunkt</td><td>Global*</td></tr>
+    <tr><td>Nano Banana Pro</td><td>Google Vertex AI</td><td>Global-Endpunkt</td><td>Global*</td></tr>
 </table>
-<p><em>* Von den drei Nano-Banana-Varianten läuft eine über Google Vertex AI in der EU-Region Belgien, die beiden anderen sind dort nicht verfügbar und laufen über die Google-AI-Studio-Schnittstelle ohne EU-Regionsbindung. Vor der ersten Nutzung wird ein Einwilligungsdialog mit Hinweis auf den jeweiligen Verarbeitungsort angezeigt; für die globale Verarbeitung ist eine eigene Zustimmung erforderlich. Wählt der Nutzer sie nicht, wird das EU-Modell verwendet.</em></p>
+<p><em>* Von den drei Nano-Banana-Varianten läuft eine über Google Vertex AI in der EU-Region Belgien, die beiden anderen sind dort nicht verfügbar und werden über den Vertex-Global-Endpunkt ohne Ortsbindung angesprochen; eine Verarbeitung außerhalb der EU ist damit möglich. Alle drei laufen über dieselbe Plattform und damit unter derselben Vertragsgrundlage, dem Google Cloud Data Processing Addendum mit EU-Standardvertragsklauseln. Vor der ersten Nutzung wird ein Einwilligungsdialog mit Hinweis auf den jeweiligen Verarbeitungsort angezeigt; für die globale Verarbeitung ist eine eigene Zustimmung erforderlich. Wählt der Nutzer sie nicht, wird das EU-Modell verwendet.</em></p>
 
 <p><strong>6. Dokumenten-Chat (PDF-Analyse)</strong></p>
 <ul>
@@ -231,7 +231,7 @@ class Anlage1
         <th>AVV/DPA</th>
     </tr>
     <tr><td>Microsoft</td><td>KI-Chat, Dokumenten-Chat, Bildgenerierung, Wissensspeicher, Spracheingabe und Vorlesen, Postfach- und Kalenderzugriff bei Microsoft 365</td><td>Germany West Central/Frankfurt (DE), Sweden Central/Gävle (SE), global</td><td>Microsoft Products and Services DPA</td></tr>
-    <tr><td>Google</td><td>KI-Chat (Gemini), Bildgenerierung, Musikgenerierung (Lyria 3), Postfachzugriff bei Gmail</td><td>St. Ghislain (BE), global (Vertex Global-Endpunkt, Lyria und AI Studio)</td><td>Google Cloud Data Processing Addendum mit EU-Standardvertragsklauseln für Vertex AI. Für Google AI Studio ist die einschlägige Vertragsgrundlage noch zu belegen.</td></tr>
+    <tr><td>Google</td><td>KI-Chat (Gemini), Bildgenerierung, Musikgenerierung (Lyria 3), Postfachzugriff bei Gmail</td><td>St. Ghislain (BE), global (Vertex Global-Endpunkt und Lyria)</td><td>Google Cloud Data Processing Addendum mit EU-Standardvertragsklauseln</td></tr>
     <tr><td>Perplexity AI</td><td>RechercheMeister (Webrecherche)</td><td>USA (Zero Data Retention)</td><td>Perplexity DPA mit EU-SCCs (Modul 2)</td></tr>
     <tr><td>IONOS SE</td><td>Hosting der Plattform und Datenbank</td><td>Deutschland</td><td>IONOS AVV</td></tr>
 </table>
@@ -241,7 +241,7 @@ class Anlage1
 <p>Eine Übermittlung außerhalb der EU erfolgt nur, wenn der Nutzer sich aktiv dafür entscheidet. Betroffen sind:</p>
 <ul>
     <li><strong>Die sieben in Abschnitt 4 als global geführten Sprachmodelle</strong> (Claude Opus 4.8, Claude Sonnet 4.6, Claude Haiku 4.5, Llama 4 Maverick, Gemini 3.5 Flash, Gemini 3.6 Flash, Gemini 3.5 Flash-Lite). Garantien: EU-Standardvertragsklauseln im Rahmen der Microsoft- bzw. Google-DPA.</li>
-    <li><strong>Die Bildmodelle Nano Banana 2 und Nano Banana Pro:</strong> Google AI Studio, globale Verarbeitung. Es werden nur Text-Eingaben und ggf. Referenzbilder übermittelt. Diese beiden Modelle werden nicht über Vertex AI, sondern über Google AI Studio bereitgestellt; welches Vertragswerk die Übermittlung deckt, wird derzeit geprüft. Solange der Nachweis aussteht, steht für eine EU-gebundene Bildgenerierung das Modell Nano Banana (EU) zur Verfügung.</li>
+    <li><strong>Die Bildmodelle Nano Banana 2 und Nano Banana Pro:</strong> Google Vertex AI über den globalen Endpunkt, eine EU-Region ist für diese beiden Modelle nicht verfügbar. Garantien: Google Cloud DPA mit SCCs. Es werden nur Text-Eingaben und ggf. Referenzbilder übermittelt. Für eine EU-gebundene Bildgenerierung steht das Modell Nano Banana (EU) zur Verfügung.</li>
     <li><strong>Musik-Generator (Lyria 3):</strong> Google Vertex AI über den globalen Endpunkt, eine EU-Region ist derzeit nicht verfügbar. Garantien: Google Cloud DPA mit SCCs. Übermittelt werden die Textbeschreibung und, bei Gesang, der eingegebene Liedtext. Die Übermittlung setzt eine eigene, am Konto gespeicherte Zustimmung voraus, die serverseitig geprüft wird.</li>
     <li><strong>RechercheMeister (Perplexity AI):</strong> USA. Garantien: DPA mit EU-SCCs (Modul 2), Zero Data Retention, SOC 2 Type II.</li>
 </ul>

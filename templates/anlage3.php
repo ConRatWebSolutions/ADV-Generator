@@ -41,10 +41,9 @@ class Anlage3
 <p>
     - Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland<br>
     f&uuml;r die Sprachmodelle der Gemini-Reihe, die Bildmodelle, den Musik-Generator (Lyria 3) sowie den Postfachzugriff bei Gmail<br>
-    Regionen: St. Ghislain (BE) sowie global (Vertex Global-Endpunkt, Lyria und AI Studio)<br>
+    Regionen: St. Ghislain (BE) sowie global (Vertex Global-Endpunkt und Lyria)<br>
     (Grundlage: Google Cloud Data Processing Addendum mit EU-Standardvertragsklauseln f&uuml;r Vertex AI<br>
-    TOM:&nbsp; https://cloud.google.com/terms/data-processing-addendum &ndash; Anhang 2, Sicherheitsma&szlig;nahmen.<br>
-    Die Bildmodelle Nano Banana 2 und Nano Banana Pro werden &uuml;ber Google AI Studio bereitgestellt; die daf&uuml;r einschl&auml;gige Vertragsgrundlage wird derzeit gepr&uuml;ft.)
+    TOM:&nbsp; https://cloud.google.com/terms/data-processing-addendum &ndash; Anhang 2, Sicherheitsma&szlig;nahmen).
 </p>
 <p>
     - Perplexity AI, Inc., San Francisco, Kalifornien, USA<br>

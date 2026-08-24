@@ -12,7 +12,7 @@ declare(strict_types=1);
 final class AvvVersion
 {
     /** Fortlaufende Inhaltsversion, Format JJJJ-MM-TT.N */
-    public const VERSION = '2026-08-24.4';
+    public const VERSION = '2026-08-24.5';
 
     /** Datum der letzten inhaltlichen Aenderung am Vertragstext */
     public const CONTENT_DATE = '24.08.2026';
