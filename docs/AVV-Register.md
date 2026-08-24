@@ -19,7 +19,7 @@ einzige Stelle, an der der Umsetzungsstand gefuehrt wird.
 
 | | |
 |---|---|
-| Textstand | 2026-08-24.2 |
+| Textstand | 2026-08-24.3 |
 | Basis | AVV-Anlage-ConRat-AI-Abgleich-2026-08-24, zweiter Durchgang |
 | Status | entwurf, nicht freigegeben |
 | Live ausgeliefert | Textstand vor 2026-08-24.1, Deploy ausstehend |
@@ -51,7 +51,7 @@ Nano Banana 2 und Nano Banana Pro.
 | 07 | Vorrangsatz | erledigt in 269b814, Wortlaut und Ort noch zu bestaetigen | Anlage 1, Kopf |
 | 08 | Formalien im Generator | erledigt in 2026-08-24.1 | Vertragskopf, Anlage 2 |
 | 09 | Musik-Generator ohne eigene Zustimmung | **offen, Produktaenderung in conrat-ai** | Anlage 1, Abschnitt 6d und 11 |
-| 10 | Firmierung und TOM der drei neuen Eintraege | Firmierungen erledigt, **TOM-Links fehlen** | Anlage 3 |
+| 10 | Firmierung und TOM der drei neuen Eintraege | erledigt in 2026-08-24.3 | Anlage 3 |
 | 11 | Verweis auf some-solutions.de | offen, Entscheidung im Haus | Anlage 3, Vertrag § 7 Abs. 2 |
 
 ## Zusaetzlich erledigt in 2026-08-24.2
@@ -71,9 +71,11 @@ Nano Banana 2 und Nano Banana Pro.
    nicht ein, er weist nur in der Oberflaeche hin. Der Vertrag bleibt so lange
    in sich widerspruechlich. Zu schliessen ist das im Produkt, nicht durch
    Abschwaechen der Zusage.
-2. **TOM-Links (Frage 10).** Die drei neuen Eintraege tragen jetzt Firmierung
-   und Anschrift, aber keinen Link auf die Massnahmen. Die drei Adressen muessen
-   aus den jeweils gueltigen DPA uebernommen werden.
+2. **Perplexity-DPA-Adresse (Frage 10).** Die TOM-Links stehen. Die Adresse
+   www.perplexity.ai/hub/legal/dpa liess sich nur mittelbar belegen, ein
+   direkter Abruf wird von Perplexity abgewiesen (HTTP 403). Sie ist einmal im
+   Browser zu bestaetigen. Verlinkt ist als TOM trust.perplexity.ai, das
+   erreichbar ist.
 3. **Google AI Studio.** Solange die Vertragsgrundlage nicht belegt ist, ist der
    Einsatz von Nano Banana 2 und Nano Banana Pro nicht abgedeckt.
 
