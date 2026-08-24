@@ -18,7 +18,7 @@ class Anlage2
 </p>
 <p>
     <br>
-    <strong>Datenschutzbeauftragter/Ansprechpartner der ConRat GmbH&nbsp;</strong><br>
+    <strong>Datenschutzbeauftragter/Ansprechpartner der ConRat WebSolutions GmbH&nbsp;</strong><br>
     Externer DSB:&nbsp;PadPort Datenschutz&nbsp;<br>
     E-Mail: info@dsb-mitte.de<br>
     Telefon: 0152 29283797<br>

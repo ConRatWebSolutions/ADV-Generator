@@ -36,7 +36,9 @@ class AgreementTemplate
 
 <p><strong>und</strong></p>
 
-<p><strong>Auftragnehmer</strong><br>
+<p><strong>ConRat WebSolutions GmbH</strong><br>
+Gartenstr. 4<br>
+37281 Wanfried<br>
 – nachfolgend \"Auftragnehmer\" genannt –</p>
 
 <p>gemeinsam auch \"die Parteien\" genannt.<br /></p>
