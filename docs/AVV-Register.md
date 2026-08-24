@@ -19,7 +19,7 @@ einzige Stelle, an der der Umsetzungsstand gefuehrt wird.
 
 | | |
 |---|---|
-| Textstand | 2026-08-24.5 |
+| Textstand | 2026-08-24.6 |
 | Basis | AVV-Anlage-ConRat-AI-Abgleich-2026-08-24, zweiter Durchgang |
 | Status | entwurf, nicht freigegeben |
 | Live ausgeliefert | Textstand vor 2026-08-24.1, Deploy ausstehend |
@@ -52,7 +52,7 @@ Nano Banana 2 und Nano Banana Pro.
 | 08 | Formalien im Generator | erledigt in 2026-08-24.1 | Vertragskopf, Anlage 2 |
 | 09 | Musik-Generator ohne eigene Zustimmung | erledigt, Produkt und Vertrag | Anlage 1, Abschnitt 6d und 9 |
 | 10 | Firmierung und TOM der drei neuen Eintraege | erledigt in 2026-08-24.3 | Anlage 3 |
-| 11 | Verweis auf some-solutions.de | **offen, Seite ist nicht erreichbar** | Anlage 3, Vertrag § 7 Abs. 2 |
+| 11 | Verweis auf die Verarbeiterliste | Adresse korrigiert, **Seiteninhalt unvollstaendig** | Anlage 3, Vertrag § 7 Abs. 2 |
 
 ## Zusaetzlich erledigt in 2026-08-24.2
 
@@ -66,15 +66,21 @@ Nano Banana 2 und Nano Banana Pro.
 
 ## Blocker vor der naechsten Auslieferung
 
-**Verweis auf die Verarbeiterliste (Frage 11).** Anlage 3 und § 7 Abs. 2
-verweisen auf https://www.some-solutions.de/dsgvo-verarbeiter. Geprueft am
-24.08.2026: die Adresse liefert HTTP 404, auch die Startseite der Domain. Das
-Zertifikat ist selbstsigniert und auf webslave.ispgateway.de ausgestellt, jeder
-Browser warnt. Der Vertrag verweist die Kunden damit auf eine Seite, die es
-nicht gibt. Das beruehrt das Widerspruchsrecht nach Art. 28 Abs. 2 DSGVO: wer
-die Liste nicht einsehen kann, kann einer Aenderung nicht binnen zwei Wochen
-widersprechen. Entweder die Seite wird bereitgestellt oder der Verweis zieht
-auf eine erreichbare ConRat-Adresse um.
+**Inhalt der Verarbeiterliste (Frage 11).** Die Adresse ist korrigiert: der
+Vertrag verweist nicht mehr auf das nicht existierende
+some-solutions.de/dsgvo-verarbeiter, sondern auf
+https://somesolutions.de/auftragsverarbeiter/ (HTTP 200, gueltiges
+Sectigo-Zertifikat).
+
+Die Seite fuehrt jedoch nur domainfactory, IONOS und consentmanager. Microsoft,
+Google und Perplexity fehlen dort, ein Standdatum fehlt ebenfalls. Damit
+besteht derselbe Widerspruch wie zuvor zwischen Anlage 1 und Anlage 3, nur
+eine Ebene weiter aussen: die im Vertrag als verbindlich benannte oeffentliche
+Liste ist kuerzer als Anlage 3. Zu ergaenzen sind die drei Eintraege mit
+Firmierung, Anschrift, Einsatzbereich, Region und TOM-Verweis, dazu ein
+sichtbares Standdatum.
+
+Randnotiz: das Wildcard-Zertifikat *.somesolutions.de laeuft am 11.09.2026 ab.
 
 ## Erledigt in 2026-08-24.5
 

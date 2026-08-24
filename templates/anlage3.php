@@ -17,7 +17,7 @@ class Anlage3
 <p>
     Die nachfolgende Liste der Unterauftragnehmer ist Bestandteil dieser Vereinbarung. Änderungen und Ergänzungen werden dem Auftraggeber mitgeteilt. Der Auftraggeber kann der Änderung – innerhalb von zwei Wochen nach Mitteilung – aus einem datenschutzrechtlichen Grund widersprechen. Erfolgt kein Widerspruch innerhalb der Frist, gilt die Zustimmung zur Änderung als gegeben.
 </p>
-<br> Die Auflistung der eingesetzten Unterauftragnehmer kann sich von Zeit zu Zeit ändern. Die jeweils aktuelle Übersicht ist auf unserer Website unter https://www.some-solutions.de/dsgvo-verarbeiter abrufbar. Wir empfehlen, diese Seite in regelmäßigen Abständen einzusehen. </p> 
+<br> Die Auflistung der eingesetzten Unterauftragnehmer kann sich von Zeit zu Zeit ändern. Die jeweils aktuelle Übersicht ist auf unserer Website unter https://somesolutions.de/auftragsverarbeiter/ abrufbar. Wir empfehlen, diese Seite in regelmäßigen Abständen einzusehen. </p> 
 <p>
     
 </p>
