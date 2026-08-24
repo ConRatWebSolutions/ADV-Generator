@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/avv_version.php';
+
 /**
  * PDF Configuration for DSGVO ADV Project
  * TCPDF integration for generating DSGVO agreements
@@ -369,7 +371,7 @@ class PDFConfig
             $this->pdf->Ln(10);
             $this->pdf->SetFont($this->config['font_family'], 'I', 9);
             $currentDate = date('d.m.Y');
-            $this->pdf->Cell(0, 5, 'Erstellt am: ' . $currentDate, 0, 1, 'L');
+            $this->pdf->Cell(0, 5, 'Erstellt am: ' . $currentDate . '  |  ' . AvvVersion::label(), 0, 1, 'L');
         }
     }
 

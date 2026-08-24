@@ -8,7 +8,8 @@ class Anlage3
 {
     public static function getContent(): string
     {
-        $currentDate = date('d.m.Y');
+        require_once __DIR__ . '/../config/avv_version.php';
+        $currentDate = AvvVersion::CONTENT_DATE;
         return ' 
 <p>
     <strong>Stand: ' . $currentDate . '</strong>
