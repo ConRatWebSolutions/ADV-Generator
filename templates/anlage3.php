@@ -50,7 +50,7 @@ class Anlage3
     - Perplexity AI, Inc., San Francisco, Kalifornien, USA<br>
     f&uuml;r die KI-gest&uuml;tzte Webrecherche (RechercheMeister)<br>
     USA, Zero Data Retention<br>
-    (Grundlage: Perplexity DPA mit EU-Standardvertragsklauseln, Modul 2<br>
+    (Grundlage: Perplexity DPA mit EU-Standardvertragsklauseln, Modul 2:&nbsp; https://www.perplexity.ai/hub/legal/dpa<br>
     TOM:&nbsp; https://trust.perplexity.ai).
 </p>
  <p>

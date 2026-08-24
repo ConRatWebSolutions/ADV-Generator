@@ -207,7 +207,8 @@ class Anlage1
     <li><strong>Plattform und Verarbeitungsort:</strong> Google Vertex AI über den globalen Endpunkt. Eine EU-Region ist für Lyria 3 derzeit nicht verfügbar, das Modell befindet sich bei Google im Preview-Stand. Sobald ein EU-Endpunkt bereitsteht, wird umgestellt.</li>
     <li><strong>Übermittelte Daten:</strong> die Textbeschreibung des Stücks samt Genre, Stimmung und Tempo sowie, wenn der Nutzer Gesang wählt, der eingegebene Liedtext. Bestandsdaten werden nicht übermittelt.</li>
     <li><strong>Speicherung:</strong> die erzeugte Audiodatei wird ausschließlich auf dem eigenen Server in Deutschland gespeichert.</li>
-    <li><strong>Drittlandtransfer:</strong> ja, siehe Abschnitt 9. Vor der Nutzung wird auf die Verarbeitung außerhalb der EU hingewiesen.</li>
+    <li><strong>Zustimmung:</strong> für die globale Verarbeitung besteht ein eigener Zustimmungsschlüssel. Vor der ersten Nutzung wird eine ausdrückliche Einwilligung eingeholt, die Beschreibung und Liedtext ausdrücklich benennt, und mit Zeitpunkt und Textversion am Nutzerkonto gespeichert. Sie wird serverseitig geprüft, bevor eine Anfrage an Google ergeht; ohne sie findet keine Übermittlung statt. Eine Zustimmung zu den Bildmodellen deckt den Musik-Generator nicht ab, weil sie sich auf eine andere Verarbeitung bezog.</li>
+    <li><strong>Drittlandtransfer:</strong> ja, siehe Abschnitt 9.</li>
 </ul>
 
 <p><strong>7. RechercheMeister (KI-Webrecherche)</strong></p>
@@ -241,7 +242,7 @@ class Anlage1
 <ul>
     <li><strong>Die sieben in Abschnitt 4 als global geführten Sprachmodelle</strong> (Claude Opus 4.8, Claude Sonnet 4.6, Claude Haiku 4.5, Llama 4 Maverick, Gemini 3.5 Flash, Gemini 3.6 Flash, Gemini 3.5 Flash-Lite). Garantien: EU-Standardvertragsklauseln im Rahmen der Microsoft- bzw. Google-DPA.</li>
     <li><strong>Die Bildmodelle Nano Banana 2 und Nano Banana Pro:</strong> Google AI Studio, globale Verarbeitung. Es werden nur Text-Eingaben und ggf. Referenzbilder übermittelt. Diese beiden Modelle werden nicht über Vertex AI, sondern über Google AI Studio bereitgestellt; welches Vertragswerk die Übermittlung deckt, wird derzeit geprüft. Solange der Nachweis aussteht, steht für eine EU-gebundene Bildgenerierung das Modell Nano Banana (EU) zur Verfügung.</li>
-    <li><strong>Musik-Generator (Lyria 3):</strong> Google Vertex AI über den globalen Endpunkt, eine EU-Region ist derzeit nicht verfügbar. Garantien: Google Cloud DPA mit SCCs. Übermittelt werden die Textbeschreibung und, bei Gesang, der eingegebene Liedtext.</li>
+    <li><strong>Musik-Generator (Lyria 3):</strong> Google Vertex AI über den globalen Endpunkt, eine EU-Region ist derzeit nicht verfügbar. Garantien: Google Cloud DPA mit SCCs. Übermittelt werden die Textbeschreibung und, bei Gesang, der eingegebene Liedtext. Die Übermittlung setzt eine eigene, am Konto gespeicherte Zustimmung voraus, die serverseitig geprüft wird.</li>
     <li><strong>RechercheMeister (Perplexity AI):</strong> USA. Garantien: DPA mit EU-SCCs (Modul 2), Zero Data Retention, SOC 2 Type II.</li>
 </ul>
 <p>
