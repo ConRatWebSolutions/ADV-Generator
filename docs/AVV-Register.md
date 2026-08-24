@@ -52,7 +52,7 @@ Nano Banana 2 und Nano Banana Pro.
 | 08 | Formalien im Generator | erledigt in 2026-08-24.1 | Vertragskopf, Anlage 2 |
 | 09 | Musik-Generator ohne eigene Zustimmung | erledigt, Produkt und Vertrag | Anlage 1, Abschnitt 6d und 9 |
 | 10 | Firmierung und TOM der drei neuen Eintraege | erledigt in 2026-08-24.3 | Anlage 3 |
-| 11 | Verweis auf die Verarbeiterliste | Adresse korrigiert, **Seiteninhalt unvollstaendig** | Anlage 3, Vertrag § 7 Abs. 2 |
+| 11 | Verweis auf die Verarbeiterliste | erledigt, Adresse und Seiteninhalt | Anlage 3, Vertrag § 7 Abs. 2 |
 
 ## Zusaetzlich erledigt in 2026-08-24.2
 
@@ -66,19 +66,19 @@ Nano Banana 2 und Nano Banana Pro.
 
 ## Blocker vor der naechsten Auslieferung
 
-**Inhalt der Verarbeiterliste (Frage 11).** Die Adresse ist korrigiert: der
-Vertrag verweist nicht mehr auf das nicht existierende
-some-solutions.de/dsgvo-verarbeiter, sondern auf
-https://somesolutions.de/auftragsverarbeiter/ (HTTP 200, gueltiges
-Sectigo-Zertifikat).
+Keine offenen technischen Punkte. Ausstehend sind allein die Bewertungen und
+Entscheidungen zu den Fragen 01, 02, 04, 05, 06 und 07.
 
-Die Seite fuehrt jedoch nur domainfactory, IONOS und consentmanager. Microsoft,
-Google und Perplexity fehlen dort, ein Standdatum fehlt ebenfalls. Damit
-besteht derselbe Widerspruch wie zuvor zwischen Anlage 1 und Anlage 3, nur
-eine Ebene weiter aussen: die im Vertrag als verbindlich benannte oeffentliche
-Liste ist kuerzer als Anlage 3. Zu ergaenzen sind die drei Eintraege mit
-Firmierung, Anschrift, Einsatzbereich, Region und TOM-Verweis, dazu ein
-sichtbares Standdatum.
+## Verarbeiterliste, Abgleich vom 24.08.2026
+
+https://somesolutions.de/auftragsverarbeiter/ und Anlage 3 fuehren dieselben
+sechs Verarbeiter. Neunzehn Einzelmerkmale maschinell gegengeprueft
+(Firmierungen, Anschriften, Einsatzbereiche, Regionen, Vertragsgrundlagen,
+TOM-Verweise, Hinweis zur Website-Erfassung): null Abweichungen. Die Seite
+traegt das Standdatum 24.08.2026.
+
+Bei kuenftigen Aenderungen sind beide Orte gemeinsam zu pflegen; die Seite ist
+in Anlage 3 und in § 7 Abs. 2 als verbindliche Uebersicht benannt.
 
 Randnotiz: das Wildcard-Zertifikat *.somesolutions.de laeuft am 11.09.2026 ab.
 
