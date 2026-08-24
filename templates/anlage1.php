@@ -101,7 +101,7 @@ class Anlage1
     <li><strong>Nutzungsdaten:</strong> Zeitpunkt der Nutzung, gewähltes KI-Modell, Credit-Verbrauch, Einwilligungsstatus je Dienst inkl. Zeitstempel und Version.</li>
     <li><strong>Inhaltsdaten (KI-Chat):</strong> Text-Eingaben (Prompts) und KI-generierte Antworten. Gesprächsverläufe werden ausschließlich in der eigenen Datenbank in Deutschland gespeichert. An die KI-Anbieter werden nur die für die jeweilige Anfrage erforderlichen Prompts per zustandsloser API-Schnittstelle übermittelt. Es werden keine dauerhaften Sitzungen bei den KI-Anbietern erstellt.</li>
     <li><strong>Inhaltsdaten (Bildgenerierung):</strong> Text-Prompts und ggf. Referenzbilder. Generierte Bilder werden ausschließlich auf dem eigenen Server in Deutschland gespeichert. Es werden keine personenbezogenen Metadaten (Name, E-Mail o. Ä.) an die KI-Anbieter übermittelt.</li>
-    <li><strong>Inhaltsdaten (Dokumenten-Chat):</strong> Hochgeladene PDF-Dokumente und darauf bezogene Fragen. Verarbeitung und Speicherung erfolgen ausschließlich in der EU.</li>
+    <li><strong>Inhaltsdaten (Dokumenten-Chat):</strong> Hochgeladene PDF-Dokumente und darauf bezogene Fragen. Die Auswertung erfolgt in der Azure-Region Sweden Central (Gävle, Schweden), die Speicherung der Dokumente auf dem eigenen Server in Deutschland. Ein Drittlandtransfer findet nicht statt.</li>
     <li><strong>Inhaltsdaten (RechercheMeister):</strong> Suchanfragen, die an die Perplexity Sonar API übermittelt werden. Suchanfragen können inhaltlich personenbezogene Daten enthalten. Es werden keine Account-Daten oder Dokumente an Perplexity übermittelt.</li>
     <li><strong>Inhaltsdaten (Postfach):</strong> Absender, Empfänger, Betreff, Text und Anhänge der Nachrichten im verbundenen Postfach, soweit der Assistent sie für den Auftrag heranzieht. Nachrichten werden nicht dauerhaft gespiegelt; sie werden je Lauf beim Anbieter abgerufen. Vor der Vorauswahl, welche Nachrichten überhaupt betrachtet werden, ersetzt das System Absendernamen, E-Mail-Adressen und Telefonnummern durch Platzhalter. Die eigentliche Bearbeitung erfolgt anschließend mit den echten Daten, weil eine Antwort ohne sie nicht möglich ist.</li>
     <li><strong>Inhaltsdaten (Kalender):</strong> Titel, Zeitraum, Ort und Teilnehmer der abgerufenen Termine.</li>
@@ -144,6 +144,7 @@ class Anlage1
     <tr><td>Gemini 3.6 Flash</td><td>Google Vertex AI</td><td>Global-Endpunkt</td><td>Global*</td></tr>
     <tr><td>Gemini 3.5 Flash-Lite</td><td>Google Vertex AI</td><td>Global-Endpunkt</td><td>Global*</td></tr>
 </table>
+<p><em>Die Angaben dieser Tabelle gelten für den KI-Chat. Der Dokumenten-Chat nutzt dasselbe Modell GPT-5 Mini in einer eigenen Bereitstellung mit abweichender Region; maßgeblich ist dafür Abschnitt 6.</em></p>
 <p><em>* Bei den als global geführten Modellen liegt die Azure-Ressource zwar in der EU, die Abarbeitung erfolgt jedoch über eine Kapazität ohne Ortsbindung (GlobalStandard); eine Verarbeitung außerhalb der EU ist damit möglich. Abgesichert ist der Transfer über die EU-Standardvertragsklauseln der jeweiligen Anbieter-DPA. Nutzer können alternativ eines der 7 Modelle mit EU-Garantie verwenden.</em></p>
 
 <p><strong>5. KI-Bildgenerierung: Modelle und Verarbeitungsorte</strong></p>
@@ -165,7 +166,8 @@ class Anlage1
 
 <p><strong>6. Dokumenten-Chat (PDF-Analyse)</strong></p>
 <ul>
-    <li><strong>KI-Modell:</strong> Es wird ausschließlich ein Sprachmodell mit EU-Garantie nach der Tabelle in Abschnitt 4 verwendet (Microsoft Azure, Rechenzentren Frankfurt bzw. Gävle).</li>
+    <li><strong>KI-Modell:</strong> GPT-5 Mini über den Azure AI Agent Service von Microsoft.</li>
+    <li><strong>Verarbeitungsregion:</strong> Sweden Central (Gävle, Schweden). Diese Region weicht bewusst von der des übrigen Azure-Betriebs ab: der KI-Chat nutzt GPT-5 Mini in Germany West Central (Frankfurt), der Dokumenten-Chat eine eigene Bereitstellung in Schweden. Beide Regionen liegen innerhalb der EU.</li>
     <li><strong>Dokumentenspeicherung:</strong> Hochgeladene Dokumente werden auf dem eigenen Server in Deutschland gespeichert.</li>
     <li><strong>Zugriffskontrolle:</strong> Jeder Nutzer sieht nur seine eigenen Dokumente. Download-URLs sind signiert und zeitlich begrenzt (1 Stunde Gültigkeit).</li>
     <li><strong>Drittlandtransfer:</strong> Keiner. Sämtliche Verarbeitung findet innerhalb der EU statt.</li>
@@ -183,7 +185,7 @@ class Anlage1
 
 <p><strong>6b. Wissensspeicher</strong></p>
 <p>
-    Der Auftraggeber kann Dokumente, Freitexte und Webseiten in einen Wissensspeicher legen, aus dem Assistenten und Chat Antworten belegen. Die Dateien werden zur Indizierung an einen Vektorspeicher bei Microsoft Azure (Region Schweden) übermittelt und zusätzlich als Kopie auf dem eigenen Server in Deutschland vorgehalten. Beim Löschen einer Quelle wird beides entfernt. Der Zugriff ist auf den Besitzer und, sofern er den Speicher für sein Team freigibt, auf dessen Teammitglieder beschränkt.
+    Der Auftraggeber kann Dokumente, Freitexte und Webseiten in einen Wissensspeicher legen, aus dem Assistenten und Chat Antworten belegen. Die Dateien werden zur Indizierung an einen Vektorspeicher bei Microsoft Azure in der Region Sweden Central (Gävle, Schweden) übermittelt und zusätzlich als Kopie auf dem eigenen Server in Deutschland vorgehalten. Beim Löschen einer Quelle wird beides entfernt. Der Zugriff ist auf den Besitzer und, sofern er den Speicher für sein Team freigibt, auf dessen Teammitglieder beschränkt.
 </p>
 
 <p><strong>6c. Spracheingabe, Vorlesen und Website-Erfassung</strong></p>
@@ -211,7 +213,7 @@ class Anlage1
         <th>Region</th>
         <th>AVV/DPA</th>
     </tr>
-    <tr><td>Microsoft</td><td>KI-Chat, Dokumenten-Chat, Bildgenerierung, Wissensspeicher, Spracheingabe und Vorlesen, Postfach- und Kalenderzugriff bei Microsoft 365</td><td>Frankfurt (DE), Gävle (SE), global</td><td>Microsoft Products and Services DPA</td></tr>
+    <tr><td>Microsoft</td><td>KI-Chat, Dokumenten-Chat, Bildgenerierung, Wissensspeicher, Spracheingabe und Vorlesen, Postfach- und Kalenderzugriff bei Microsoft 365</td><td>Germany West Central/Frankfurt (DE), Sweden Central/Gävle (SE), global</td><td>Microsoft Products and Services DPA</td></tr>
     <tr><td>Google</td><td>KI-Chat (Gemini), Bildgenerierung, Postfachzugriff bei Gmail</td><td>St. Ghislain (BE), global (Vertex Global-Endpunkt und AI Studio)</td><td>Google Cloud Data Processing Addendum</td></tr>
     <tr><td>Perplexity AI</td><td>RechercheMeister (Webrecherche)</td><td>USA (Zero Data Retention)</td><td>Perplexity DPA mit EU-SCCs (Modul 2)</td></tr>
     <tr><td>IONOS SE</td><td>Hosting der Plattform und Datenbank</td><td>Deutschland</td><td>IONOS AVV</td></tr>
